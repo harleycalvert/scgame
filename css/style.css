@@ -339,26 +339,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 
 
 
-#first {
-	float: left;
-	height: 400px;
-	border: 1px solid black;
-	margin: 10px;
-	padding: 20px;
-	background-color: yellow;
-	word-wrap: break-word;
-}
 
-#second {
-	float: left;
-	height: 600px;
-	border: 1px solid black;
-	margin: 10px;
-	padding: 20px;
-	background-color: yellow;
-	word-wrap: break-word;
-
-}
 
 section {
 	float: left;
@@ -374,10 +355,12 @@ section {
 	section[name="first"] {
 		width: calc(100% - 20px);
 		height: auto;
+		width: 570px;
 	}
 
 	section[name="second"] {
 		width: calc(100% - 20px);
+		width: 570px;
 	}
 
 }
