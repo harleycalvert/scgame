@@ -1,0 +1,362 @@
+
+* { 
+	box-sizing: border-box; 
+	margin: 0;
+	padding: 0;
+}
+
+body {
+  background-color: rgb(255, 214, 153);
+}
+
+h1 {
+	position: relative;
+	top: 20px;
+	left: 20px;
+}
+
+p {
+	position: relative;
+	top: 20px;
+	left: 20px;
+}
+
+img {
+	position: relative;
+	margin-left: -25px;
+	margin-top: -25px;
+	height: 100px;
+    width: 100px;
+}
+
+input[id="rb_circle"]:checked ~ #square {
+  display: none;
+}
+
+input[id="rb_circle"]:checked ~ #square_home {
+  display: none;
+}
+
+input[id="rb_square"]:checked ~ #circle {
+  display: none;
+}
+
+input[id="rb_square"]:checked ~ #circle_home {
+  display: none;
+}
+
+#main {
+	position: relative;
+	top: 50px;
+	left: 20px;
+}
+
+
+#square {
+	position: relative;
+	background-color: #09f;
+	margin: 0px auto;
+	width: 400px;
+	height: 400px;
+	border: 5px solid black;
+}
+
+#vertical_s {
+	content:"";
+	position: absolute;
+	border-top: 5px solid black;
+	width: 390px;
+	transform: rotate(90deg);
+	transform-origin: 0% 0%;
+	top: 0px;
+	left: 197.5px;
+}
+
+#horizontal_s {
+	content:"";
+	position: absolute;
+	align-content: right;
+	border-top: 5px solid black;
+	width: 390px;
+	transform-origin: 0% 0%;
+	top: 192.5px;
+	left: 0px;
+}
+
+#diag1_s {
+	content:"";
+	position: absolute;
+	border-top: 5px solid black;
+	width: 558px;
+	transform: rotate(45deg);
+	transform-origin: 0% 0%;
+	top: -3px;
+	left: 0px;
+}
+
+#diag2_s {
+	content:"";
+	position: absolute;
+	align-content: right;
+	border-top: 5px solid black;
+	width: 558px;
+	transform: rotate(-45deg);
+	transform-origin: 0% 0%;
+	top: 390px;
+	left: -3px;
+}
+
+#one_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: -25px;
+	left: -25px;
+	width: 50px;
+	height: 50px;
+}
+
+#two_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: -25px;
+	left: 170px;
+	width: 50px;
+	height: 50px;
+}
+
+#three_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: -25px;
+	left: 365px;
+	width: 50px;
+	height: 50px;
+}
+
+#four_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 170px;
+	left: -25px;
+	width: 50px;
+	height: 50px;
+}
+
+#five_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 170px;
+	left: 170px;
+	width: 50px;
+	height: 50px;
+}
+
+#six_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 170px;
+	left: 365px;
+	width: 50px;
+	height: 50px;
+}
+
+#seven_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 365px;
+	left: -25px;
+	width: 50px;
+	height: 50px;
+}
+
+#eight_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 365px;
+	left: 170px;
+	width: 50px;
+	height: 50px;
+}
+
+#nine_s {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);	top: 365px;
+	left: 365px;
+	width: 50px;
+	height: 50px;
+}
+
+
+
+
+
+#circle {
+	position: relative;
+	background-color: #09f;
+	margin: 20px auto;
+	width: 400px;
+	height: 400px;
+	border-radius: 200px;
+	border: 5px solid black;
+}
+
+
+#vertical_c {
+	content:"";
+	position: absolute;
+	border-top: 5px solid black;
+	width: 390px;
+	transform: rotate(90deg);
+	transform-origin: 0% 0%;
+	top: 0px;
+	left: 197.5px;
+}
+
+#horizontal_c {
+	content:"";
+	position: absolute;
+	align-content: right;
+	border-top: 5px solid black;
+	width: 390px;
+	transform-origin: 0% 0%;
+	top: 192.5px;
+	left: 0px;
+}
+
+#diag1_c {
+	content:"";
+	position: absolute;
+	border-top: 5px solid black;
+	width: 398px;
+	transform: rotate(45deg);
+	transform-origin: 0% 0%;
+	top: 52px;
+	left: 57px;
+}
+
+#diag2_c {
+	content:"";
+	position: absolute;
+	align-content: right;
+	border-top: 5px solid black;
+	width: 398px;
+	transform: rotate(-45deg);
+	transform-origin: 0% 0%;
+	top: 334px;
+	left: 52px;
+}
+
+#one_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 30px;
+	left: 30px;
+	width: 50px;
+	height: 50px;
+}
+
+#two_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: -25px;
+	left: 170px;
+	width: 50px;
+	height: 50px;
+}
+
+#three_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 30px;
+	left: 305px;
+	width: 50px;
+	height: 50px;
+}
+
+#four_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 170px;
+	left: -25px;
+	width: 50px;
+	height: 50px;
+}
+
+#five_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 170px;
+	left: 170px;
+	width: 50px;
+	height: 50px;
+}
+
+#six_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 170px;
+	left: 365px;
+	width: 50px;
+	height: 50px;
+}
+
+#seven_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 305px;
+	left: 30px;
+	width: 50px;
+	height: 50px;
+}
+
+#eight_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 365px;
+	left: 170px;
+	width: 50px;
+	height: 50px;
+}
+
+#nine_c {
+	content:"";
+	position: absolute;
+	background-color: rgba(232,12,122,0.3);
+	top: 305px;
+	left: 305px;
+	width: 50px;
+	height: 50px;
+}
+
+
+
+
+
+@media (min-width: 0px) and (max-width:767px) {
+
+}
+
+@media (min-width: 768px) and (max-width:991px) {
+
+}
+
+@media (min-width: 992px) {
+
+}

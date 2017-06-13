@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<title>Game</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	    <script src="js/script.js"></script>
+
+	</head>
+
+  	<body id="body" onload="start()">
+
+
+		<header>
+			<h1>Game</h1>
+		</header>
+
+		<p>The aim of the game is to get three in a row. Take it in turns to place all the smiley faces on the board. Place each smiley face on top of a square node. Once all six smiley faces are on the board, continue taking it in turns, but now each smiley can only move across one link or edge to a neighbouring node.</p>
+
+		<br>
+
+		<p>Click on a smiley face then click on a destination node to move it there.
+		</p>
+
+
+
+		<div id="main">
+
+			<label for="rb_op">1 Player</label>
+			<input id="rb_op" type="radio" name="players" value="op">
+			<label for="rb_tp">2 Players</label>
+			<input id="rb_tp" type="radio" name="players" value="tp" checked>
+
+			<br><br>
+
+			<label for="rb_circle">Circle</label>
+			<input id="rb_circle" type="radio" name="shape" value="circle" checked>
+			<label for="rb_square">Square</label>
+			<input id="rb_square" type="radio" name="shape" value="square">
+
+			<div id="circle_home">
+				<div id="circle">
+					<div id="vertical_c"></div>
+					<div id="horizontal_c"></div>
+					<div id="diag1_c"></div>
+					<div id="diag2_c"></div>
+					<div id="one_c"></div>
+					<div id="two_c"></div>
+					<div id="three_c"></div>
+					<div id="four_c"></div>
+					<div id="five_c"></div>
+					<div id="six_c"></div>
+					<div id="seven_c"></div>
+					<div id="eight_c"></div>
+					<div id="nine_c"></div>
+				</div>
+				<br><br>
+			</div>
+
+			<div id="square_home">
+				<div id="square" class="">
+					<div id="vertical_s"></div>
+					<div id="horizontal_s"></div>
+					<div id="diag1_s"></div>
+					<div id="diag2_s"></div>
+					<div id="one_s"></div>
+					<div id="two_s"></div>
+					<div id="three_s"></div>
+					<div id="four_s"></div>
+					<div id="five_s"></div>
+					<div id="six_s"></div>
+					<div id="seven_s"></div>
+					<div id="eight_s"></div>
+					<div id="nine_s"></div>
+				</div>
+				<br><br><br>
+			</div>
+
+		</div>
+
+		
+		
+		
+
+
+
+
+
+
+
+
+
+	</body>
+
+
+
+</html>
