@@ -6,19 +6,15 @@
 }
 
 body {
-  background-color: rgb(255, 214, 153);
+  background-color: rgb(255,255,255);
 }
 
 h1 {
 	position: relative;
-	top: 20px;
-	left: 20px;
 }
 
 p {
 	position: relative;
-	top: 20px;
-	left: 20px;
 	margin-right: 20px;
 }
 
@@ -44,12 +40,6 @@ input[id="rb_square"]:checked ~ #circle {
 
 input[id="rb_square"]:checked ~ #circle_home {
   display: none;
-}
-
-#main {
-	position: relative;
-	top: 50px;
-	left: 20px;
 }
 
 
@@ -349,15 +339,68 @@ input[id="rb_square"]:checked ~ #circle_home {
 
 
 
+#first {
+	float: left;
+	height: 400px;
+	border: 1px solid black;
+	margin: 10px;
+	padding: 20px;
+	background-color: yellow;
+	word-wrap: break-word;
+}
+
+#second {
+	float: left;
+	height: 600px;
+	border: 1px solid black;
+	margin: 10px;
+	padding: 20px;
+	background-color: yellow;
+	word-wrap: break-word;
+
+}
+
+section {
+	float: left;
+	height: 700px;
+	border: 1px solid black;
+	margin: 10px;
+	padding: 40px;
+	background-color: rgb(255, 204, 102);
+	word-wrap: break-word;
+}
 
 @media (min-width: 0px) and (max-width:767px) {
+	section[name="first"] {
+		width: calc(100% - 20px);
+		height: auto;
+	}
+
+	section[name="second"] {
+		width: calc(100% - 20px);
+	}
 
 }
 
-@media (min-width: 768px) and (max-width:991px) {
+@media (min-width: 768px) and (max-width:1119px) {
+	section[name="first"] {
+		width: calc(100% - 20px);
+		height: auto;
+	}
+
+	section[name="second"] {
+		width: calc(100% - 20px);
+	}
 
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1120px) {
+	section[name="first"] {
+		width: calc(50% - 20px);
+	}
+
+	section[name="second"] {
+		width: calc(50% - 20px);
+	}
 
 }
