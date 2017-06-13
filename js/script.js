@@ -48,7 +48,7 @@ function move_c(i) {
   this.image_c = i;
   one_c.setAttribute('onclick', 'move_to_one_c(image_c)');
   two_c.setAttribute('onclick', 'move_to_two_c(image_c)');
-  three_c.setAttribute('onclick', 'move_to_three_c(imag_c)');
+  three_c.setAttribute('onclick', 'move_to_three_c(image_c)');
   four_c.setAttribute('onclick', 'move_to_four_c(image_c)');
   five_c.setAttribute('onclick', 'move_to_five_c(image_c)');
   six_c.setAttribute('onclick', 'move_to_six_c(image_c)');
@@ -135,7 +135,6 @@ function move_to_three_s(j) {
 
 function move_to_four_s(j) {
   document.getElementById("four_s").appendChild(document.getElementById(j));  
-
   document.getElementById(j).style.zIndex = 1;
 }
 
