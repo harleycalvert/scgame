@@ -396,11 +396,11 @@ section {
 
 @media (min-width: 1120px) {
 	section[name="first"] {
-		width: calc(50% - 20px);
+		width: calc(30% - 20px);
 	}
 
 	section[name="second"] {
-		width: calc(50% - 20px);
+		width: calc(70% - 20px);
 	}
 
 }
