@@ -97,7 +97,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	left: -3px;
 }
 
-#one_s {
+#s1 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -107,7 +107,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#two_s {
+#s2 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -117,7 +117,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#three_s {
+#s3 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -127,7 +127,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#four_s {
+#s4 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -137,7 +137,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#five_s {
+#s5 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -147,7 +147,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#six_s {
+#s6 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -157,7 +157,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#seven_s {
+#s7 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -167,7 +167,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#eight_s {
+#s8 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -177,7 +177,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#nine_s {
+#s9 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);	top: 365px;
@@ -246,7 +246,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	left: 52px;
 }
 
-#one_c {
+#c1 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -256,7 +256,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#two_c {
+#c2 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -266,7 +266,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#three_c {
+#c3 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -276,7 +276,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#four_c {
+#c4 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -286,7 +286,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#five_c {
+#c5 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -296,7 +296,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#six_c {
+#c6 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -306,7 +306,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#seven_c {
+#c7 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -316,7 +316,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#eight_c {
+#c8 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);
@@ -326,7 +326,7 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
-#nine_c {
+#c9 {
 	content:"";
 	position: absolute;
 	background-color: rgba(232,12,122,0.3);

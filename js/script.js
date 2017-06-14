@@ -46,59 +46,59 @@ function start() {
 function move_c(i) {
   //alert(i);
   this.image_c = i;
-  one_c.setAttribute('onclick', 'move_to_one_c(image_c)');
-  two_c.setAttribute('onclick', 'move_to_two_c(image_c)');
-  three_c.setAttribute('onclick', 'move_to_three_c(image_c)');
-  four_c.setAttribute('onclick', 'move_to_four_c(image_c)');
-  five_c.setAttribute('onclick', 'move_to_five_c(image_c)');
-  six_c.setAttribute('onclick', 'move_to_six_c(image_c)');
-  seven_c.setAttribute('onclick', 'move_to_seven_c(image_c)');
-  eight_c.setAttribute('onclick', 'move_to_eight_c(image_c)');
-  nine_c.setAttribute('onclick', 'move_to_nine_c(image_c)');
+  c1.setAttribute('onclick', 'move_to_c1(image_c)');
+  c2.setAttribute('onclick', 'move_to_c2(image_c)');
+  c3.setAttribute('onclick', 'move_to_c3(image_c)');
+  c4.setAttribute('onclick', 'move_to_c4(image_c)');
+  c5.setAttribute('onclick', 'move_to_c5(image_c)');
+  c6.setAttribute('onclick', 'move_to_c6(image_c)');
+  c7.setAttribute('onclick', 'move_to_c7(image_c)');
+  c8.setAttribute('onclick', 'move_to_c8(image_c)');
+  c9.setAttribute('onclick', 'move_to_c9(image_c)');
 }
 
-function move_to_one_c(i) {
-  document.getElementById("one_c").appendChild(document.getElementById(i));
+function move_to_c1(i) {
+  document.getElementById("c1").appendChild(document.getElementById(i));
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_two_c(i) {
-  document.getElementById("two_c").appendChild(document.getElementById(i));  
+function move_to_c2(i) {
+  document.getElementById("c2").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_three_c(i) {
-  document.getElementById("three_c").appendChild(document.getElementById(i));  
+function move_to_c3(i) {
+  document.getElementById("c3").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_four_c(i) {
-  document.getElementById("four_c").appendChild(document.getElementById(i));  
+function move_to_c4(i) {
+  document.getElementById("c4").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_five_c(i) {
-  document.getElementById("five_c").appendChild(document.getElementById(i));  
+function move_to_c5(i) {
+  document.getElementById("c5").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_six_c(i) {
-  document.getElementById("six_c").appendChild(document.getElementById(i));  
+function move_to_c6(i) {
+  document.getElementById("c6").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_seven_c(i) {
-  document.getElementById("seven_c").appendChild(document.getElementById(i));  
+function move_to_c7(i) {
+  document.getElementById("c7").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_eight_c(i) {
-  document.getElementById("eight_c").appendChild(document.getElementById(i));  
+function move_to_c8(i) {
+  document.getElementById("c8").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
-function move_to_nine_c(i) {
-  document.getElementById("nine_c").appendChild(document.getElementById(i));  
+function move_to_c9(i) {
+  document.getElementById("c9").appendChild(document.getElementById(i));  
   document.getElementById(i).style.zIndex = 1;
 }
 
@@ -107,59 +107,59 @@ function move_to_nine_c(i) {
 
 function move_s(j) {
   this.image_s = j;
-  one_s.setAttribute('onclick', 'move_to_one_s(image_s)');
-  two_s.setAttribute('onclick', 'move_to_two_s(image_s)');
-  three_s.setAttribute('onclick', 'move_to_three_s(image_s)');
-  four_s.setAttribute('onclick', 'move_to_four_s(image_s)');
-  five_s.setAttribute('onclick', 'move_to_five_s(image_s)');
-  six_s.setAttribute('onclick', 'move_to_six_s(image_s)');
-  seven_s.setAttribute('onclick', 'move_to_seven_s(image_s)');
-  eight_s.setAttribute('onclick', 'move_to_eight_s(image_s)');
-  nine_s.setAttribute('onclick', 'move_to_nine_s(image_s)');
+  s1.setAttribute('onclick', 'move_to_s1(image_s)');
+  s2.setAttribute('onclick', 'move_to_s2(image_s)');
+  s3.setAttribute('onclick', 'move_to_s3(image_s)');
+  s4.setAttribute('onclick', 'move_to_s4(image_s)');
+  s5.setAttribute('onclick', 'move_to_s5(image_s)');
+  s6.setAttribute('onclick', 'move_to_s6(image_s)');
+  s7.setAttribute('onclick', 'move_to_s7(image_s)');
+  s8.setAttribute('onclick', 'move_to_s8(image_s)');
+  s9.setAttribute('onclick', 'move_to_s9(image_s)');
 }
 
-function move_to_one_s(j) {
-  document.getElementById("one_s").appendChild(document.getElementById(j));
+function move_to_s1(j) {
+  document.getElementById("s1").appendChild(document.getElementById(j));
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_two_s(j) {
-  document.getElementById("two_s").appendChild(document.getElementById(j));  
+function move_to_s2(j) {
+  document.getElementById("s2").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_three_s(j) {
-  document.getElementById("three_s").appendChild(document.getElementById(j));  
+function move_to_s3(j) {
+  document.getElementById("s3").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_four_s(j) {
-  document.getElementById("four_s").appendChild(document.getElementById(j));  
+function move_to_s4(j) {
+  document.getElementById("s4").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_five_s(j) {
-  document.getElementById("five_s").appendChild(document.getElementById(j));  
+function move_to_s5(j) {
+  document.getElementById("s5").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_six_s(j) {
-  document.getElementById("six_s").appendChild(document.getElementById(j));  
+function move_to_s6(j) {
+  document.getElementById("s6").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_seven_s(j) {
-  document.getElementById("seven_s").appendChild(document.getElementById(j));  
+function move_to_s7(j) {
+  document.getElementById("s7").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_eight_s(j) {
-  document.getElementById("eight_s").appendChild(document.getElementById(j));  
+function move_to_s8(j) {
+  document.getElementById("s8").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
-function move_to_nine_s(j) {
-  document.getElementById("nine_s").appendChild(document.getElementById(j));  
+function move_to_s9(j) {
+  document.getElementById("s9").appendChild(document.getElementById(j));  
   document.getElementById(j).style.zIndex = 1;
 }
 
