@@ -25,6 +25,11 @@ function token_circle(smiley) {
   smile_c.setAttribute('id', i);
   smile_c.setAttribute('name', 'c');
   smile_c.setAttribute('onclick', 'move_c(id)');
+  if (i==1 || i==2 || i==3) {
+    smile_c.setAttribute('class', 'red');
+  } else {
+    smile_c.setAttribute('class', 'yellow');
+  }
   document.getElementById('circle_home').appendChild(smile_c);
   
 }
@@ -39,18 +44,22 @@ function token_square(smiley) {
   document.getElementById('square_home').appendChild(smile_s);
 }
 
+var cp = true;
 function move_c(i) {
-  //alert(i);
+  alert(document.getElementById(i).className + " " + cp);
   this.image_c = i;
-  c1.setAttribute('onclick', 'move_to_c1(image_c)');
-  c2.setAttribute('onclick', 'move_to_c2(image_c)');
-  c3.setAttribute('onclick', 'move_to_c3(image_c)');
-  c4.setAttribute('onclick', 'move_to_c4(image_c)');
-  c5.setAttribute('onclick', 'move_to_c5(image_c)');
-  c6.setAttribute('onclick', 'move_to_c6(image_c)');
-  c7.setAttribute('onclick', 'move_to_c7(image_c)');
-  c8.setAttribute('onclick', 'move_to_c8(image_c)');
-  c9.setAttribute('onclick', 'move_to_c9(image_c)');
+  if (((document.getElementById(i).className == 'red') && (cp == true)) || ((document.getElementById(i).className == 'yellow') && (cp == false))) {
+    //alert(document.getElementById(i).className);
+    c1.setAttribute('onclick', 'move_to_c1(image_c)');
+    c2.setAttribute('onclick', 'move_to_c2(image_c)');
+    c3.setAttribute('onclick', 'move_to_c3(image_c)');
+    c4.setAttribute('onclick', 'move_to_c4(image_c)');
+    c5.setAttribute('onclick', 'move_to_c5(image_c)');
+    c6.setAttribute('onclick', 'move_to_c6(image_c)');
+    c7.setAttribute('onclick', 'move_to_c7(image_c)');
+    c8.setAttribute('onclick', 'move_to_c8(image_c)');
+    c9.setAttribute('onclick', 'move_to_c9(image_c)');
+  }
 }
 
 function move_to_c1(i) {
@@ -58,6 +67,7 @@ function move_to_c1(i) {
     document.getElementById("c1").appendChild(document.getElementById(i));
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c1');
+    cp = !cp;
   }
 }
 
@@ -66,6 +76,7 @@ function move_to_c2(i) {
     document.getElementById("c2").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c2');
+    cp = !cp;
   }
 }
 
@@ -74,6 +85,7 @@ function move_to_c3(i) {
     document.getElementById("c3").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c3');
+    cp = !cp;
   }
 }
 
@@ -82,6 +94,7 @@ function move_to_c4(i) {
     document.getElementById("c4").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c4');
+    cp = !cp;
   }
 }
 
@@ -90,6 +103,7 @@ function move_to_c5(i) {
     document.getElementById("c5").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c5');
+    cp = !cp;
   }
 }
 
@@ -98,6 +112,7 @@ function move_to_c6(i) {
     document.getElementById("c6").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c6');
+    cp = !cp;
   }
 }
 
@@ -106,6 +121,7 @@ function move_to_c7(i) {
     document.getElementById("c7").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c7');
+    cp = !cp;
   }
 }
 
@@ -114,6 +130,7 @@ function move_to_c8(i) {
     document.getElementById("c8").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c8');
+    cp = !cp;
   }
 }
 
@@ -122,6 +139,7 @@ function move_to_c9(i) {
     document.getElementById("c9").appendChild(document.getElementById(i));  
     document.getElementById(i).style.zIndex = 1;
     document.getElementById(i).setAttribute('name', 'c9');
+    cp = !cp;
   }
 }
 
