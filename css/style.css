@@ -6,7 +6,7 @@
 }
 
 body {
-  background-color: rgb(255,255,255);
+	background-color: rgb(255,255,255);
 }
 
 h1 {
@@ -50,6 +50,13 @@ input[id="rb_square"]:checked ~ #circle_home {
 	height: 50px;
 }
 
+.edge {
+	content:"";
+	position: absolute;
+	border-top: 5px solid black;
+	transform-origin: 0% 0%;
+	}
+
 
 #square {
 	position: relative;
@@ -60,47 +67,29 @@ input[id="rb_square"]:checked ~ #circle_home {
 	border: 5px solid black;
 }
 
-#vertical_s {
-	content:"";
-	position: absolute;
-	border-top: 5px solid black;
+#sv {
 	width: 390px;
 	transform: rotate(90deg);
-	transform-origin: 0% 0%;
 	top: 0px;
 	left: 197.5px;
 }
 
-#horizontal_s {
-	content:"";
-	position: absolute;
-	align-content: right;
-	border-top: 5px solid black;
+#sh {
 	width: 390px;
-	transform-origin: 0% 0%;
 	top: 192.5px;
 	left: 0px;
 }
 
-#diag1_s {
-	content:"";
-	position: absolute;
-	border-top: 5px solid black;
+#sa {
 	width: 558px;
 	transform: rotate(45deg);
-	transform-origin: 0% 0%;
 	top: -3px;
 	left: 0px;
 }
 
-#diag2_s {
-	content:"";
-	position: absolute;
-	align-content: right;
-	border-top: 5px solid black;
+#sb {
 	width: 558px;
 	transform: rotate(-45deg);
-	transform-origin: 0% 0%;
 	top: 390px;
 	left: -3px;
 }
@@ -165,47 +154,29 @@ input[id="rb_square"]:checked ~ #circle_home {
 }
 
 
-#vertical_c {
-	content:"";
-	position: absolute;
-	border-top: 5px solid black;
+#cv {
 	width: 390px;
 	transform: rotate(90deg);
-	transform-origin: 0% 0%;
 	top: 0px;
 	left: 197.5px;
 }
 
-#horizontal_c {
-	content:"";
-	position: absolute;
-	align-content: right;
-	border-top: 5px solid black;
+#ch {
 	width: 390px;
-	transform-origin: 0% 0%;
 	top: 192.5px;
 	left: 0px;
 }
 
-#diag1_c {
-	content:"";
-	position: absolute;
-	border-top: 5px solid black;
+#ca {
 	width: 398px;
 	transform: rotate(45deg);
-	transform-origin: 0% 0%;
 	top: 52px;
 	left: 57px;
 }
 
-#diag2_c {
-	content:"";
-	position: absolute;
-	align-content: right;
-	border-top: 5px solid black;
+#cb {
 	width: 398px;
 	transform: rotate(-45deg);
-	transform-origin: 0% 0%;
 	top: 334px;
 	left: 52px;
 }
