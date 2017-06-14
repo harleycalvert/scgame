@@ -26,7 +26,9 @@ function token_square(smiley_s) {
 
 
 function start() {
-  //add 4 cloning them, then add number 5, the one we search for
+  document.getElementById("rb_2p").checked = true;
+  document.getElementById("rb_circle").checked = true;  
+
   for (i=1; i<4; i++) {
     token_circle('images/red.png');
   } 
