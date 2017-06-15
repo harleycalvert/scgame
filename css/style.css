@@ -71,7 +71,9 @@ img {
     z-index: 1;
 }
 
-
+#players {
+  display: none;
+}
 
 input[id="rb_circle"]:checked ~ #square_home {
   display: none;

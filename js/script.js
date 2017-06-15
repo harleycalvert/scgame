@@ -9,6 +9,9 @@ var smile_s = document.createElement('img');
 
 var winner_id = null;
 
+var red_c_array = [];
+var yellow_c_array = [];
+
 function start() {
   document.getElementById("rb_circle").checked = true;  
   document.getElementById("rb_2p").checked = true;
@@ -57,6 +60,8 @@ function start() {
   
   win.addEventListener('click', close);
 
+  //rb_1p.addEventListener('click', random_smiley_c);
+
 }
 
 function on_win(winner) {
@@ -86,6 +91,59 @@ function close() {
       document.getElementById("rb_yellow_c").checked = true;
     }
   } 
+
+}
+//////////////////////////////////////////////////////////////////////////////////////
+//1 player
+
+function random_smiley_c() {
+  //4,5,6, yellow
+  
+  var board_c_array = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
+  var move_c_array = [move_to_c1,move_to_c2,move_to_c3,move_to_c4,move_to_c5,move_to_c6,move_to_c7,move_to_c8,move_to_c9];
+  var occupied_c = red_c_array.concat(yellow_c_array);
+  //occupied_c.sort();
+  var free_c = board_c_array;
+
+  //yellow_c_array;
+  //red_c_array;
+
+
+  //i is the yellow smiley 4, 5 or 6
+  var i = Math.floor(((Math.random() * 3) + 1) + 3);
+  console.log("i: " + i);
+  move_c(i);
+  var go  = null;
+  //move_to_c5(i);
+  //console.log(move_c_array[go]());
+  
+
+  for (i=0; i<board_c_array.length; i++) {
+    for (j=0; j<occupied_c.length; j++) {
+      if (occupied_c[j] == board_c_array[i]) {
+        //free_c delete[i]
+        free_c[i] = null;
+      }
+      
+    }
+
+  }
+
+  var dest = null;
+  while (dest == null) {
+    go = Math.floor(Math.random() * 9);
+    dest = free_c[go];
+  }
+  i = Math.floor(((Math.random() * 3) + 1) + 3);
+  
+  console.log("destination: " + dest);
+  console.log("go, array index of destination: " + go);
+  console.log("occupied: " + occupied_c);
+  console.log("free: " + free_c); 
+  console.log("i, the smiley: " + i);
+  //console.log("move_c_array[go]: " + move_c_array[go]); 
+  move_c_array[go](i); 
+
 
 }
 
@@ -135,7 +193,6 @@ function token_circle(smiley) {
 function move_c(i) {
   console.log(document.getElementById(i).className + " " + cp);
   this.image_c = i;
-
 }
 
 function move_to_c1(i) {
@@ -150,6 +207,8 @@ function move_to_c1(i) {
       win_c();
     }
   }
+
+
 }
 
 function move_to_c2(i) {
@@ -257,16 +316,16 @@ function move_to_c9(i) {
 }
 
 function win_c() {
-
+  
+  red_c_array = [];
   var rc = document.getElementsByClassName('red_c');
-  var red_c_array = [];
   for (var i = 0; i < rc.length; i++) {
       red_c_array.push(rc[i].name);
   }
   console.log("red smileys located at: " + red_c_array);
-
+  
+  yellow_c_array = [];
   var yc = document.getElementsByClassName('yellow_c');
-  var yellow_c_array = [];
   for (var i = 0; i < yc.length; i++) {
       yellow_c_array.push(yc[i].name);
   }

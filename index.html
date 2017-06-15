@@ -36,6 +36,9 @@
 			<br>
 
 			<p>Click on a smiley face then click on a destination node to move it there.</p>
+			<br>
+
+			<p>The computer can play for yellow on the circle game, but it's not very good at it yet. You might have to click a few times, as sometimes it chooses an illegal move.</p>
 
 		</section>
 		<section name="second">
@@ -47,11 +50,14 @@
 
 			<br><br>
 
-
-			<label for="rb_1p">1 Player</label>
-			<input id="rb_1p" type="radio" name="players" value="op">
-			<label for="rb_2p">2 Players</label>
-			<input id="rb_2p" type="radio" name="players" value="tp">
+			<div id="players">
+				<label for="rb_1p">1 Player</label>
+				<input id="rb_1p" type="radio" name="players" value="op">
+				<label for="rb_2p">2 Players</label>
+				<input id="rb_2p" type="radio" name="players" value="tp">
+				
+			</div>
+			<button onclick="random_smiley_c()">Make computer have a turn for yellow</button>
 
 			<br><br>
 
