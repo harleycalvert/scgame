@@ -27,19 +27,65 @@ img {
     width: 100px;
 }
 
-input[id="rb_circle"]:checked ~ #square {
-  display: none;
+#win {
+	text-align: center;
+	/*border: solid 3px black;*/
+	position: fixed;
+    left: 0%;
+    top: 0%;
+    z-index: 1;
+
+    height: 100%;
+    /*margin-top: -150px;*/
+
+    width: 100%;
+    /*margin-left: -200px;*/
+    background-color: red;
+    -webkit-animation-name: example; /* Safari 4.0 - 8.0 */
+    -webkit-animation-duration: 4s; /* Safari 4.0 - 8.0 */
+    animation-name: example;
+    animation-duration: 4s;
+    display: none;
 }
+
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+
+/* Standard syntax */
+@keyframes example {
+    from {background-color: red;}
+    to {background-color: yellow;}
+}
+
+
+#win_center {
+	position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+    z-index: 1;
+}
+
+
 
 input[id="rb_circle"]:checked ~ #square_home {
   display: none;
 }
 
-input[id="rb_square"]:checked ~ #circle {
+input[id="rb_square"]:checked ~ #circle_home {
   display: none;
 }
 
-input[id="rb_square"]:checked ~ #circle_home {
+input[id="rb_circle"]:checked ~ #rb_s {
+  display: none;
+}
+
+input[id="rb_square"]:checked ~ #rb_c {
   display: none;
 }
 

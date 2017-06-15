@@ -23,7 +23,7 @@
 			<br>
 			<p>The aim of the game is to get three in a row.</p>
 			<br>
-			
+
 			<p>
 			Taking it in turns, place all the smiley faces on the board. 
 			Place each smiley face on top of a square node. 
@@ -36,14 +36,16 @@
 			<br>
 
 			<p>Click on a smiley face then click on a destination node to move it there.</p>
-			<br>
-
-			<p>Red Plays First.</p>
-
-			<br><br>
 
 		</section>
 		<section name="second">
+
+			<label for="rb_circle">Circle</label>
+			<input id="rb_circle" type="radio" name="shape" value="circle">
+			<label for="rb_square">Square</label>
+			<input id="rb_square" type="radio" name="shape" value="square">
+
+			<br><br>
 
 
 			<label for="rb_1p">1 Player</label>
@@ -53,10 +55,19 @@
 
 			<br><br>
 
-			<label for="rb_circle">Circle</label>
-			<input id="rb_circle" type="radio" name="shape" value="circle">
-			<label for="rb_square">Square</label>
-			<input id="rb_square" type="radio" name="shape" value="square">
+			<div id="rb_c">
+				<label for="rb_red_c">Red First</label>
+				<input id="rb_red_c" type="radio" name="color_c" value="red">
+				<label for="rb_yellow_c">Yellow First</label>
+				<input id="rb_yellow_c" type="radio" name="color_c" value="yellow">
+			</div>
+
+			<div id="rb_s">
+				<label for="rb_red_s">Red First</label>
+				<input id="rb_red_s" type="radio" name="color_s" value="red">
+				<label for="rb_yellow_s">Yellow First</label>
+				<input id="rb_yellow_s" type="radio" name="color_s" value="yellow">
+			</div>
 
 			<div id="circle_home">
 				<div id="circle">
@@ -98,6 +109,12 @@
 			</div>
 
 		</section>
+
+		<div id="win">
+			<div id="win_center"></div>
+			<br>
+			<h1>You Win!</h1>     
+		</div>
 
 		
 		
