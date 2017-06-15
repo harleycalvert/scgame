@@ -49,21 +49,12 @@ function start() {
   s8.setAttribute('onclick', 'move_to_s8(image_s)');
   s9.setAttribute('onclick', 'move_to_s9(image_s)');
 
-/*
-  rb_red_c.setAttribute('onclick', 'choose_first_c()');
-  rb_yellow_c.setAttribute('onclick', 'choose_first_c()');
-
-  rb_red_s.setAttribute('onclick', 'choose_first_s()');
-  rb_yellow_s.setAttribute('onclick', 'choose_first_s()');
-*/
-
   rb_red_c.addEventListener('click', choose_first_c);
   rb_yellow_c.addEventListener('click', choose_first_c);
 
   rb_red_s.addEventListener('click', choose_first_s);
   rb_yellow_s.addEventListener('click', choose_first_s);
   
-  //win.setAttribute('onclick', 'close()');
   win.addEventListener('click', close);
 
 }
@@ -71,9 +62,7 @@ function start() {
 function on_win(winner) {
   document.getElementById('win').style.display = 'inline-block';
   document.getElementById('win_center').appendChild(winner);
-  
   winner_id = winner.id;
-
 }
 
 function close() {
