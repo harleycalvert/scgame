@@ -4,7 +4,6 @@ var cp_count = 0;
 var sp = false;
 var sp_count = 0;
 
-//var winner = null;
 var smile_c = document.createElement("img");
 var smile_s = document.createElement('img');
 
@@ -62,12 +61,11 @@ function start() {
 function on_win(winner) {
   document.getElementById('win').style.display = 'inline-block';
   document.getElementById('win_center').appendChild(winner);
-
 }
 
 function close() {
   console.log("close");
-  document.getElementById("win").style.display = 'none';
+  document.getElementById('win').style.display = 'none';
 }
 
 
