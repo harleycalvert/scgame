@@ -105,7 +105,8 @@ function close() {
       cp = false;
       cp_count=0;
       yellow_smiley_c_id=3;
-      yellow_smiley_c_count=0;
+      yellow_smiley_c_count = 0;
+      free_c = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
       document.getElementById("rb_yellow_c").checked = true;
       document.getElementById('c1').name = null;
       document.getElementById('c2').name = null;
