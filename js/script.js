@@ -133,8 +133,6 @@ function random_smiley_c() {
   }
   yellow_smiley_c_count++;
 
-  
-  console.log("yellow_smiley_c_id: " + yellow_smiley_c_id);
   move_c(yellow_smiley_c_id);
   var go  = null;
   //move_to_c5(i);
@@ -182,12 +180,12 @@ function choose_first_c() {
 
 function red_wins_c(winner) {
   console.log("red wins");
-  //on_win(winner);
+  on_win(winner);
 }
 
 function yellow_wins_c(winner) {
   console.log("yellow wins");
-  //on_win(winner);
+  on_win(winner);
 }
 
 function token_circle(smiley) {
