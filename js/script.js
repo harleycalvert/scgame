@@ -84,6 +84,15 @@ function close() {
       sp = false;
       sp_count=0;
       document.getElementById("rb_yellow_s").checked = true;
+      document.getElementById('s1').name = null;
+      document.getElementById('s2').name = null;
+      document.getElementById('s3').name = null;
+      document.getElementById('s4').name = null;
+      document.getElementById('s5').name = null;
+      document.getElementById('s6').name = null;
+      document.getElementById('s7').name = null;
+      document.getElementById('s8').name = null;
+      document.getElementById('s9').name = null;
     }
   } else {
     for (i=1; i<7; i++) {
@@ -538,6 +547,7 @@ function move_to_s1(j) {
       document.getElementById("s1").appendChild(document.getElementById(j));
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's1');
+      document.getElementById('s1').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -551,6 +561,7 @@ function move_to_s2(j) {
       document.getElementById("s2").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's2');
+      document.getElementById('s2').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -564,6 +575,7 @@ function move_to_s3(j) {
       document.getElementById("s3").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's3');
+      document.getElementById('s3').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -577,6 +589,7 @@ function move_to_s4(j) {
       document.getElementById("s4").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's4');
+      document.getElementById('s4').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -590,6 +603,7 @@ function move_to_s5(j) {
       document.getElementById("s5").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's5');
+      document.getElementById('s5').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -603,6 +617,7 @@ function move_to_s6(j) {
       document.getElementById("s6").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's6');
+      document.getElementById('s6').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -616,6 +631,7 @@ function move_to_s7(j) {
       document.getElementById("s7").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's7');
+      document.getElementById('s7').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -629,6 +645,7 @@ function move_to_s8(j) {
       document.getElementById("s8").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's8');
+      document.getElementById('s8').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -642,6 +659,7 @@ function move_to_s9(j) {
       document.getElementById("s9").appendChild(document.getElementById(j));  
       document.getElementById(j).style.zIndex = 1;
       document.getElementById(j).setAttribute('name', 's9');
+      document.getElementById('s9').name = document.getElementById(j).className;
       sp_count = 1;
       sp = !sp;
       win_s();
@@ -668,82 +686,42 @@ function win_s() {
   console.log("yellow smileys located at: " + yellow_s_array);
 
   //bottom row red wins
-  if (((document.getElementById('11').name == 's7') && (document.getElementById('12').name == 's8') && (document.getElementById('13').name == 's9')) 
-    || ((document.getElementById('11').name == 's7') && (document.getElementById('13').name == 's8') && (document.getElementById('12').name == 's9')) 
-    || ((document.getElementById('12').name == 's7') && (document.getElementById('11').name == 's8') && (document.getElementById('13').name == 's9')) 
-    || ((document.getElementById('12').name == 's7') && (document.getElementById('13').name == 's8') && (document.getElementById('11').name == 's9')) 
-    || ((document.getElementById('13').name == 's7') && (document.getElementById('12').name == 's8') && (document.getElementById('11').name == 's9')) 
-    || ((document.getElementById('13').name == 's7') && (document.getElementById('11').name == 's8') && (document.getElementById('12').name == 's9'))) {
+  if ((document.getElementById('s7').name == 'red_s') && (document.getElementById('s8').name == 'red_s') && (document.getElementById('s9').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //middle row horizontal red wins
-  if (((document.getElementById('11').name == 's4') && (document.getElementById('12').name == 's5') && (document.getElementById('13').name == 's6')) 
-    || ((document.getElementById('11').name == 's4') && (document.getElementById('13').name == 's5') && (document.getElementById('12').name == 's6')) 
-    || ((document.getElementById('12').name == 's4') && (document.getElementById('11').name == 's5') && (document.getElementById('13').name == 's6')) 
-    || ((document.getElementById('12').name == 's4') && (document.getElementById('13').name == 's5') && (document.getElementById('11').name == 's6')) 
-    || ((document.getElementById('13').name == 's4') && (document.getElementById('12').name == 's5') && (document.getElementById('11').name == 's6')) 
-    || ((document.getElementById('13').name == 's4') && (document.getElementById('11').name == 's5') && (document.getElementById('12').name == 's6'))) {
+  if ((document.getElementById('s4').name == 'red_s') && (document.getElementById('s5').name == 'red_s') && (document.getElementById('s6').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //top row red wins
-  if (((document.getElementById('11').name == 's1') && (document.getElementById('12').name == 's2') && (document.getElementById('13').name == 's3')) 
-    || ((document.getElementById('11').name == 's1') && (document.getElementById('13').name == 's2') && (document.getElementById('12').name == 's3')) 
-    || ((document.getElementById('12').name == 's1') && (document.getElementById('11').name == 's2') && (document.getElementById('13').name == 's3')) 
-    || ((document.getElementById('12').name == 's1') && (document.getElementById('13').name == 's2') && (document.getElementById('11').name == 's3')) 
-    || ((document.getElementById('13').name == 's1') && (document.getElementById('12').name == 's2') && (document.getElementById('11').name == 's3')) 
-    || ((document.getElementById('13').name == 's1') && (document.getElementById('11').name == 's2') && (document.getElementById('12').name == 's3'))) {
+  if ((document.getElementById('s1').name == 'red_s') && (document.getElementById('s2').name == 'red_s') && (document.getElementById('s3').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //left row red wins
-  if (((document.getElementById('11').name == 's1') && (document.getElementById('12').name == 's4') && (document.getElementById('13').name == 's7')) 
-    || ((document.getElementById('11').name == 's1') && (document.getElementById('13').name == 's4') && (document.getElementById('12').name == 's7')) 
-    || ((document.getElementById('12').name == 's1') && (document.getElementById('11').name == 's4') && (document.getElementById('13').name == 's7')) 
-    || ((document.getElementById('12').name == 's1') && (document.getElementById('13').name == 's4') && (document.getElementById('11').name == 's7')) 
-    || ((document.getElementById('13').name == 's1') && (document.getElementById('12').name == 's4') && (document.getElementById('11').name == 's7')) 
-    || ((document.getElementById('13').name == 's1') && (document.getElementById('11').name == 's4') && (document.getElementById('12').name == 's7'))) {
+  if ((document.getElementById('s1').name == 'red_s') && (document.getElementById('s4').name == 'red_s') && (document.getElementById('s7').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //middle row vertical red wins
-  if (((document.getElementById('11').name == 's2') && (document.getElementById('12').name == 's5') && (document.getElementById('13').name == 's8')) 
-    || ((document.getElementById('11').name == 's2') && (document.getElementById('13').name == 's5') && (document.getElementById('12').name == 's8')) 
-    || ((document.getElementById('12').name == 's2') && (document.getElementById('11').name == 's5') && (document.getElementById('13').name == 's8')) 
-    || ((document.getElementById('12').name == 's2') && (document.getElementById('13').name == 's5') && (document.getElementById('11').name == 's8')) 
-    || ((document.getElementById('13').name == 's2') && (document.getElementById('12').name == 's5') && (document.getElementById('11').name == 's8')) 
-    || ((document.getElementById('13').name == 's2') && (document.getElementById('11').name == 's5') && (document.getElementById('12').name == 's8'))) {
+  if ((document.getElementById('s2').name == 'red_s') && (document.getElementById('s5').name == 'red_s') && (document.getElementById('s8').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //right row red wins
-  if (((document.getElementById('11').name == 's3') && (document.getElementById('12').name == 's6') && (document.getElementById('13').name == 's9')) 
-    || ((document.getElementById('11').name == 's3') && (document.getElementById('13').name == 's6') && (document.getElementById('12').name == 's9')) 
-    || ((document.getElementById('12').name == 's3') && (document.getElementById('11').name == 's6') && (document.getElementById('13').name == 's9')) 
-    || ((document.getElementById('12').name == 's3') && (document.getElementById('13').name == 's6') && (document.getElementById('11').name == 's9')) 
-    || ((document.getElementById('13').name == 's3') && (document.getElementById('12').name == 's6') && (document.getElementById('11').name == 's9')) 
-    || ((document.getElementById('13').name == 's3') && (document.getElementById('11').name == 's6') && (document.getElementById('12').name == 's9'))) {
+  if ((document.getElementById('s3').name == 'red_s') && (document.getElementById('s6').name == 'red_s') && (document.getElementById('s9').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //diag row from top left red wins
-  if (((document.getElementById('11').name == 's1') && (document.getElementById('12').name == 's5') && (document.getElementById('13').name == 's9')) 
-    || ((document.getElementById('11').name == 's1') && (document.getElementById('13').name == 's5') && (document.getElementById('12').name == 's9')) 
-    || ((document.getElementById('12').name == 's1') && (document.getElementById('11').name == 's5') && (document.getElementById('13').name == 's9')) 
-    || ((document.getElementById('12').name == 's1') && (document.getElementById('13').name == 's5') && (document.getElementById('11').name == 's9')) 
-    || ((document.getElementById('13').name == 's1') && (document.getElementById('12').name == 's5') && (document.getElementById('11').name == 's9')) 
-    || ((document.getElementById('13').name == 's1') && (document.getElementById('11').name == 's5') && (document.getElementById('12').name == 's9'))) {
+  if ((document.getElementById('s1').name == 'red_s') && (document.getElementById('s5').name == 'red_s') && (document.getElementById('s9').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
   //diag row from top right red wins
-  if (((document.getElementById('11').name == 's3') && (document.getElementById('12').name == 's5') && (document.getElementById('13').name == 's7')) 
-    || ((document.getElementById('11').name == 's3') && (document.getElementById('13').name == 's5') && (document.getElementById('12').name == 's7')) 
-    || ((document.getElementById('12').name == 's3') && (document.getElementById('11').name == 's5') && (document.getElementById('13').name == 's7')) 
-    || ((document.getElementById('12').name == 's3') && (document.getElementById('13').name == 's5') && (document.getElementById('11').name == 's7')) 
-    || ((document.getElementById('13').name == 's3') && (document.getElementById('12').name == 's5') && (document.getElementById('11').name == 's7')) 
-    || ((document.getElementById('13').name == 's3') && (document.getElementById('11').name == 's5') && (document.getElementById('12').name == 's7'))) {
+  if ((document.getElementById('s3').name == 'red_s') && (document.getElementById('s5').name == 'red_s') && (document.getElementById('s7').name == 'red_s')) {
     red_wins_s(document.getElementById('11'));
   }
 
