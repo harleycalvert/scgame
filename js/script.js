@@ -12,6 +12,9 @@ var winner_id = null;
 var red_c_array = [];
 var yellow_c_array = [];
 
+var smiley_c_id = 3;
+var smiley_c_count = 0;
+
 function start() {
   document.getElementById("rb_circle").checked = true;  
   document.getElementById("rb_2p").checked = true;
@@ -88,6 +91,8 @@ function close() {
       document.getElementById(i).setAttribute('name', 'c');
       cp = false;
       cp_count=0;
+      smiley_c_id=3;
+      smiley_c_count=0;
       document.getElementById("rb_yellow_c").checked = true;
     }
   } 
@@ -110,39 +115,47 @@ function random_smiley_c() {
 
 
   //i is the yellow smiley 4, 5 or 6
-  var i = Math.floor(((Math.random() * 3) + 1) + 3);
-  console.log("i: " + i);
-  move_c(i);
+
+
+  if (smiley_c_count < 3) {
+    smiley_c_id++;
+  } else {
+    smiley_c_id = Math.floor(((Math.random() * 3) + 1) + 3);
+  }
+  smiley_c_count++;
+
+  
+  console.log("smiley_c_id: " + smiley_c_id);
+  move_c(smiley_c_id);
   var go  = null;
   //move_to_c5(i);
   //console.log(move_c_array[go]());
   
 
-  for (i=0; i<board_c_array.length; i++) {
+  for (k=0; k<board_c_array.length; k++) {
     for (j=0; j<occupied_c.length; j++) {
-      if (occupied_c[j] == board_c_array[i]) {
+      if (occupied_c[j] == board_c_array[k]) {
         //free_c delete[i]
-        free_c[i] = null;
+        free_c[k] = null;
       }
       
     }
 
   }
-
+ 
   var dest = null;
   while (dest == null) {
     go = Math.floor(Math.random() * 9);
     dest = free_c[go];
-  }
-  i = Math.floor(((Math.random() * 3) + 1) + 3);
+  }  
   
   console.log("destination: " + dest);
   console.log("go, array index of destination: " + go);
   console.log("occupied: " + occupied_c);
   console.log("free: " + free_c); 
-  console.log("i, the smiley: " + i);
+  console.log("smiley_c_id, the smiley: " + smiley_c_id);
   //console.log("move_c_array[go]: " + move_c_array[go]); 
-  move_c_array[go](i); 
+  move_c_array[go](smiley_c_id); 
 
 
 }

@@ -19,12 +19,16 @@ p {
 	margin-right: 20px;
 }
 
-img {
+.red_c, .yellow_c, .red_s, .yellow_s {
 	position: relative;
 	margin-left: -25px;
 	margin-top: -25px;
 	height: 100px;
     width: 100px;
+}
+
+#license {
+	text-align: center;
 }
 
 #win {
@@ -282,7 +286,7 @@ input[id="rb_square"]:checked ~ #rb_c {
 
 section {
 	float: left;
-	height: 700px;
+	height: 750px;
 	border: 1px solid black;
 	margin: 10px;
 	padding: 40px;
