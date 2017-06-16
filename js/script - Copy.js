@@ -13,7 +13,7 @@ var red_c_array = [];
 var yellow_c_array = [];
 var board_c_array = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
 var move_c_array = [move_to_c1,move_to_c2,move_to_c3,move_to_c4,move_to_c5,move_to_c6,move_to_c7,move_to_c8,move_to_c9];
-var occupied_c = [];
+var occupied_c = [null,null,null,null,null,null,null,null,null];
 var free_c = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
 
 var yellow_smiley_c_id = 3;
@@ -139,25 +139,150 @@ function random_smiley_c() {
   var go  = null;
   //move_to_c5(i);
   //console.log(move_c_array[go]());
+
+  /*
+  subtract one
+c1=c2,c3,c4
+c2=c1,c3,c5
+c3=c2,c6,c5
+c4=c1,c7,c5
+c5=1,2,3
+c6=3,9,5
+c7=4,8,5
+c8=7,9,5
+c9=8,6,5
+*/
  
   var dest = null;
+  var possible = [];
+  console.log("occupied_c: " + occupied_c);
   while (dest == null) {
-    //playing center first pays off when playing random
-    if ((free_c[4] != null) && (yellow_smiley_c_count < 2)) {
+    console.log("smiley name (from location): " + document.getElementById(yellow_smiley_c_id).name);
+    if (occupied_c[4] == null) {
       go = 4;
-      dest = free_c[go];
-    } else {
+      dest = occupied_c[go];
+    }/* else if (document.getElementById(yellow_smiley_c_id).name=='c') {
+      possible = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
       go = Math.floor(Math.random() * 9);
-      //keep searching for a destination until we find one, null values are occupied board positions
-      dest = free_c[go]; //the free_c array index corresponds to the move_c_array index, these are positions that are availabe to move to
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c1') {
+      possible = ['c2','c3','c4'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 3);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c2') {
+      possible = ['c1','c3','c5'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 5);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c3') {
+      possible = ['c2','c5','c6'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 6);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c4') {
+      possible = ['c2','c6','c8'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 7);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c5') {
+      possible = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 9);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c6') {
+      possible = ['c3','c5','c9'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 9);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c7') {
+      possible = ['c4','c5','c7'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 8);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c8') {
+      possible = ['c5','c7','c9'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 9);
+      dest = possible[go];
+    } else if (document.getElementById(yellow_smiley_c_id).name=='c9') {
+      possible = ['c5','c6','c8'];
+      for (k=0; k<possible.length; k++) {
+        for (l=0; l<occupied_c.length; l++) {
+          if(possible[k]==occupied_c[l]) {
+            possible[k] = null;
+          }
+        }
+      }
+      go = Math.floor(Math.random() * 8);
+      dest = possible[go];
     }
+      //go = Math.floor(Math.random() * 9);
+      //keep searching for a destination until we find one, null values are occupied board positions
+      //dest = free_c[go]; //the free_c array index corresponds to the move_c_array index, these are positions that are availabe to move to
+    */
   }  
-  
+  console.log("possible: " + possible);
   console.log("destination: " + dest);
-  console.log("go, array index of destination: " + go);
-  console.log("occupied: " + occupied_c);
-  console.log("free: " + free_c); 
-  console.log("yellow_smiley_c_id, the smiley: " + yellow_smiley_c_id);
+  //console.log("go, array index of destination: " + go);
+  //console.log("occupied: " + occupied_c);
+  //console.log("free: " + free_c); 
+  //console.log("yellow_smiley_c_id, the smiley: " + yellow_smiley_c_id);
   //console.log("move_c_array[go]: " + move_c_array[go]); 
   move_c_array[go](yellow_smiley_c_id); 
 
@@ -169,7 +294,7 @@ function random_smiley_c() {
 //circle
 
 function choose_first_c() {
-  if (cp_count == 0) {
+  if (cp_count==0) {
     if (document.getElementById("rb_yellow_c").checked == true) {
       cp = false;
       console.log('yellow plays first');
@@ -786,3 +911,13 @@ function win_s() {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
