@@ -11,6 +11,10 @@ var winner_id = null;
 
 var red_c_array = [];
 var yellow_c_array = [];
+var board_c_array = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
+var move_c_array = [move_to_c1,move_to_c2,move_to_c3,move_to_c4,move_to_c5,move_to_c6,move_to_c7,move_to_c8,move_to_c9];
+var occupied_c = [];
+var free_c = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
 
 var yellow_smiley_c_id = 3;
 var yellow_smiley_c_count = 0;
@@ -121,19 +125,6 @@ function close() {
 
 function random_smiley_c() {
   //4,5,6, yellow
-  
-  var board_c_array = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
-  var move_c_array = [move_to_c1,move_to_c2,move_to_c3,move_to_c4,move_to_c5,move_to_c6,move_to_c7,move_to_c8,move_to_c9];
-  var occupied_c = red_c_array.concat(yellow_c_array);
-  //occupied_c.sort();
-  var free_c = board_c_array;
-
-  //yellow_c_array;
-  //red_c_array;
-
-
-  //i is the yellow smiley 4, 5 or 6
-
 
   if (yellow_smiley_c_count < 3) {
     yellow_smiley_c_id++;
@@ -148,23 +139,17 @@ function random_smiley_c() {
   var go  = null;
   //move_to_c5(i);
   //console.log(move_c_array[go]());
-  
-
-  for (k=0; k<board_c_array.length; k++) {
-    for (j=0; j<occupied_c.length; j++) {
-      if (occupied_c[j] == board_c_array[k]) {
-        //free_c delete[i]
-        free_c[k] = null;
-      }
-      
-    }
-
-  }
  
   var dest = null;
   while (dest == null) {
-    go = Math.floor(Math.random() * 9);
-    dest = free_c[go];
+    if (free_c[4] != null) {
+      go = 4;
+      dest = free_c[go];
+    } else {
+      go = Math.floor(Math.random() * 9);
+      //keep searching for a destination until we find one, null values are occupied board positions
+      dest = free_c[go]; //the free_c array index corresponds to the move_c_array index, these are positions that are availabe to move to
+    }
   }  
   
   console.log("destination: " + dest);
@@ -196,12 +181,12 @@ function choose_first_c() {
 
 function red_wins_c(winner) {
   console.log("red wins");
-  on_win(winner);
+  //on_win(winner);
 }
 
 function yellow_wins_c(winner) {
   console.log("yellow wins");
-  on_win(winner);
+  //on_win(winner);
 }
 
 function token_circle(smiley) {
@@ -362,14 +347,46 @@ function win_c() {
   for (var i = 0; i < rc.length; i++) {
       red_c_array.push(rc[i].name);
   }
-  console.log("red smileys located at: " + red_c_array);
+  //console.log("red smileys located at: " + red_c_array);
   
   yellow_c_array = [];
   var yc = document.getElementsByClassName('yellow_c');
   for (var i = 0; i < yc.length; i++) {
       yellow_c_array.push(yc[i].name);
   }
-  console.log("yellow smileys located at: " + yellow_c_array);
+  //console.log("yellow smileys located at: " + yellow_c_array);
+
+
+  occupied_c = red_c_array.concat(yellow_c_array);
+  //occupied_c = red_c_array + yellow_c_array;
+  //console.log("occupied_c: " + occupied_c);
+
+  free_c = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
+  //console.log("free_c full: " + free_c);
+
+  for (k=0; k<board_c_array.length; k++) {
+    for (j=0; j<occupied_c.length; j++) {
+      if (occupied_c[j] == board_c_array[k]) {
+        //make all the occupied elements null, just leaving the id's that are occupied
+        free_c[k] = null;
+      }
+    }
+  }
+
+  //console.log("free_c: " + free_c);
+
+  for (l=0; l<free_c.length; l++) {
+    if (free_c[l] != null) {
+      //
+      //console.log("l: " + free_c[l]);
+      document.getElementById(free_c[l]).name = null;
+      //console.log("names: " + document.getElementById(board_c_array[l]).name);
+      //document.getElementById(l).setAttribute('name', 'vacant');
+    }
+
+  }
+
+
 
   //bottom row red wins
   if ((document.getElementById('c7').name == 'red_c') && (document.getElementById('c8').name == 'red_c') && (document.getElementById('c9').name == 'red_c')) {
