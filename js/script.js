@@ -728,82 +728,42 @@ function win_s() {
   ///////////////////////////////////////////////////////////////////////////////////////////
 
   //bottom row yellow wins
-  if (((document.getElementById('14').name == 's7') && (document.getElementById('15').name == 's8') && (document.getElementById('16').name == 's9')) 
-    || ((document.getElementById('14').name == 's7') && (document.getElementById('16').name == 's8') && (document.getElementById('15').name == 's9')) 
-    || ((document.getElementById('15').name == 's7') && (document.getElementById('14').name == 's8') && (document.getElementById('16').name == 's9')) 
-    || ((document.getElementById('15').name == 's7') && (document.getElementById('16').name == 's8') && (document.getElementById('14').name == 's9')) 
-    || ((document.getElementById('16').name == 's7') && (document.getElementById('15').name == 's8') && (document.getElementById('14').name == 's9')) 
-    || ((document.getElementById('16').name == 's7') && (document.getElementById('14').name == 's8') && (document.getElementById('15').name == 's9'))) {
+  if ((document.getElementById('s7').name == 'yellow_s') && (document.getElementById('s8').name == 'yellow_s') && (document.getElementById('s9').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //middle row horizontal yellow wins
-  if (((document.getElementById('14').name == 's4') && (document.getElementById('15').name == 's5') && (document.getElementById('16').name == 's6')) 
-    || ((document.getElementById('14').name == 's4') && (document.getElementById('16').name == 's5') && (document.getElementById('15').name == 's6')) 
-    || ((document.getElementById('15').name == 's4') && (document.getElementById('14').name == 's5') && (document.getElementById('16').name == 's6')) 
-    || ((document.getElementById('15').name == 's4') && (document.getElementById('16').name == 's5') && (document.getElementById('14').name == 's6')) 
-    || ((document.getElementById('16').name == 's4') && (document.getElementById('15').name == 's5') && (document.getElementById('14').name == 's6')) 
-    || ((document.getElementById('16').name == 's4') && (document.getElementById('14').name == 's5') && (document.getElementById('15').name == 's6'))) {
+  if ((document.getElementById('s4').name == 'yellow_s') && (document.getElementById('s5').name == 'yellow_s') && (document.getElementById('s6').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //top row yellow wins
-  if (((document.getElementById('14').name == 's1') && (document.getElementById('15').name == 's2') && (document.getElementById('16').name == 's3')) 
-    || ((document.getElementById('14').name == 's1') && (document.getElementById('16').name == 's2') && (document.getElementById('15').name == 's3')) 
-    || ((document.getElementById('15').name == 's1') && (document.getElementById('14').name == 's2') && (document.getElementById('16').name == 's3')) 
-    || ((document.getElementById('15').name == 's1') && (document.getElementById('16').name == 's2') && (document.getElementById('14').name == 's3')) 
-    || ((document.getElementById('16').name == 's1') && (document.getElementById('15').name == 's2') && (document.getElementById('14').name == 's3')) 
-    || ((document.getElementById('16').name == 's1') && (document.getElementById('14').name == 's2') && (document.getElementById('15').name == 's3'))) {
+  if ((document.getElementById('s1').name == 'yellow_s') && (document.getElementById('s2').name == 'yellow_s') && (document.getElementById('s3').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //left row yellow wins
-  if (((document.getElementById('14').name == 's1') && (document.getElementById('15').name == 's4') && (document.getElementById('16').name == 's7')) 
-    || ((document.getElementById('14').name == 's1') && (document.getElementById('16').name == 's4') && (document.getElementById('15').name == 's7')) 
-    || ((document.getElementById('15').name == 's1') && (document.getElementById('14').name == 's4') && (document.getElementById('16').name == 's7')) 
-    || ((document.getElementById('15').name == 's1') && (document.getElementById('16').name == 's4') && (document.getElementById('14').name == 's7')) 
-    || ((document.getElementById('16').name == 's1') && (document.getElementById('15').name == 's4') && (document.getElementById('14').name == 's7')) 
-    || ((document.getElementById('16').name == 's1') && (document.getElementById('14').name == 's4') && (document.getElementById('15').name == 's7'))) {
+  if ((document.getElementById('s1').name == 'yellow_s') && (document.getElementById('s4').name == 'yellow_s') && (document.getElementById('s7').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //middle row vertical yellow wins
-  if (((document.getElementById('14').name == 's2') && (document.getElementById('15').name == 's5') && (document.getElementById('16').name == 's8')) 
-    || ((document.getElementById('14').name == 's2') && (document.getElementById('16').name == 's5') && (document.getElementById('15').name == 's8')) 
-    || ((document.getElementById('15').name == 's2') && (document.getElementById('14').name == 's5') && (document.getElementById('16').name == 's8')) 
-    || ((document.getElementById('15').name == 's2') && (document.getElementById('16').name == 's5') && (document.getElementById('14').name == 's8')) 
-    || ((document.getElementById('16').name == 's2') && (document.getElementById('15').name == 's5') && (document.getElementById('14').name == 's8')) 
-    || ((document.getElementById('16').name == 's2') && (document.getElementById('14').name == 's5') && (document.getElementById('15').name == 's8'))) {
+  if ((document.getElementById('s2').name == 'yellow_s') && (document.getElementById('s5').name == 'yellow_s') && (document.getElementById('s8').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //right row yellow wins
-  if (((document.getElementById('14').name == 's3') && (document.getElementById('15').name == 's6') && (document.getElementById('16').name == 's9')) 
-    || ((document.getElementById('14').name == 's3') && (document.getElementById('16').name == 's6') && (document.getElementById('15').name == 's9')) 
-    || ((document.getElementById('15').name == 's3') && (document.getElementById('14').name == 's6') && (document.getElementById('16').name == 's9')) 
-    || ((document.getElementById('15').name == 's3') && (document.getElementById('16').name == 's6') && (document.getElementById('14').name == 's9')) 
-    || ((document.getElementById('16').name == 's3') && (document.getElementById('15').name == 's6') && (document.getElementById('14').name == 's9')) 
-    || ((document.getElementById('16').name == 's3') && (document.getElementById('14').name == 's6') && (document.getElementById('15').name == 's9'))) {
+  if ((document.getElementById('s3').name == 'yellow_s') && (document.getElementById('s6').name == 'yellow_s') && (document.getElementById('s9').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //diag row from top left yellow wins
-  if (((document.getElementById('14').name == 's1') && (document.getElementById('15').name == 's5') && (document.getElementById('16').name == 's9')) 
-    || ((document.getElementById('14').name == 's1') && (document.getElementById('16').name == 's5') && (document.getElementById('15').name == 's9')) 
-    || ((document.getElementById('15').name == 's1') && (document.getElementById('14').name == 's5') && (document.getElementById('16').name == 's9')) 
-    || ((document.getElementById('15').name == 's1') && (document.getElementById('16').name == 's5') && (document.getElementById('14').name == 's9')) 
-    || ((document.getElementById('16').name == 's1') && (document.getElementById('15').name == 's5') && (document.getElementById('14').name == 's9')) 
-    || ((document.getElementById('16').name == 's1') && (document.getElementById('14').name == 's5') && (document.getElementById('15').name == 's9'))) {
+  if ((document.getElementById('s1').name == 'yellow_s') && (document.getElementById('s5').name == 'yellow_s') && (document.getElementById('s9').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
   //diag row from top right yellow wins
-  if (((document.getElementById('14').name == 's3') && (document.getElementById('15').name == 's5') && (document.getElementById('16').name == 's7')) 
-    || ((document.getElementById('14').name == 's3') && (document.getElementById('16').name == 's5') && (document.getElementById('15').name == 's7')) 
-    || ((document.getElementById('15').name == 's3') && (document.getElementById('14').name == 's5') && (document.getElementById('16').name == 's7')) 
-    || ((document.getElementById('15').name == 's3') && (document.getElementById('16').name == 's5') && (document.getElementById('14').name == 's7')) 
-    || ((document.getElementById('16').name == 's3') && (document.getElementById('15').name == 's5') && (document.getElementById('14').name == 's7')) 
-    || ((document.getElementById('16').name == 's3') && (document.getElementById('14').name == 's5') && (document.getElementById('15').name == 's7'))) {
+  if ((document.getElementById('s3').name == 'yellow_s') && (document.getElementById('s5').name == 'yellow_s') && (document.getElementById('s7').name == 'yellow_s')) {
     yellow_wins_s(document.getElementById('14'));
   }
 
