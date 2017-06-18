@@ -19,6 +19,12 @@ var free_c = ['c1','c2','c3','c4','c5','c6','c7','c8','c9'];
 var yellow_smiley_c_id = 3;
 var yellow_smiley_c_count = 0;
 
+var red_s_array = [];
+var yellow_s_array = [];
+var board_s_array = ['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+var occupied_s = [];
+var free_s = [];
+
 function start() {
   document.getElementById("rb_circle").checked = true;  
   document.getElementById("rb_2p").checked = true;
@@ -153,9 +159,7 @@ function random_smiley_c() {
   }  
   
   console.log("destination: " + dest);
-  console.log("go, array index of destination: " + go);
-  console.log("occupied: " + occupied_c);
-  console.log("free: " + free_c); 
+  console.log("go, array index of destination: " + go); 
   console.log("yellow_smiley_c_id, the smiley: " + yellow_smiley_c_id);
   //console.log("move_c_array[go]: " + move_c_array[go]); 
   move_c_array[go](yellow_smiley_c_id); 
@@ -385,6 +389,9 @@ function win_c() {
     }
 
   }
+
+  console.log("occupied: " + occupied_c);
+  console.log("free: " + free_c);
 
 
 
@@ -687,20 +694,44 @@ function move_to_s9(j) {
 function win_s() {
 
   var rs = document.getElementsByClassName('red_s');
-  var red_s_array = [];
+  red_s_array = [];
   for (var i = 0; i < rs.length; i++) {
       //console.log(x[i].name);
       red_s_array.push(rs[i].name);
   }
-  console.log("red smileys located at: " + red_s_array);
+  //console.log("red smileys located at: " + red_s_array);
 
   var ys = document.getElementsByClassName('yellow_s');
-  var yellow_s_array = [];
+  yellow_s_array = [];
   for (var i = 0; i < ys.length; i++) {
       //console.log(x[i].name);
       yellow_s_array.push(ys[i].name);
   }
-  console.log("yellow smileys located at: " + yellow_s_array);
+  //console.log("yellow smileys located at: " + yellow_s_array);
+
+  occupied_s = red_s_array.concat(yellow_s_array);
+
+  free_s = ['s1','s2','s3','s4','s5','s6','s7','s8','s9'];
+
+  for (k=0; k<board_s_array.length; k++) {
+    for (j=0; j<occupied_s.length; j++) {
+      if (occupied_s[j] == board_s_array[k]) {
+        //make all the occupied elements null, just leaving the id's that are occupied
+        free_s[k] = null;
+      }
+    }
+  }
+
+  for (l=0; l<free_s.length; l++) {
+    if (free_s[l] != null) {
+      document.getElementById(free_s[l]).name = null;
+    }
+
+  }
+  
+  console.log("occupied: " + occupied_s);
+  console.log("free: " + free_s);
+
 
   //bottom row red wins
   if ((document.getElementById('s7').name == 'red_s') && (document.getElementById('s8').name == 'red_s') && (document.getElementById('s9').name == 'red_s')) {

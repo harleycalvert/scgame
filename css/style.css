@@ -95,6 +95,10 @@ input[id="rb_square"]:checked ~ #rb_c {
   display: none;
 }
 
+input[id="rb_square"]:checked ~ #button_circle_yellow {
+  display: none;
+}
+
 .node {
 	content:"";
 	position: absolute;
