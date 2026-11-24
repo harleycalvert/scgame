@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6efe2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14161c" media="(prefers-color-scheme: dark)">
+<title>Three in a Row: Morris, Tapatan &amp; Achi</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'%3E%3Ccircle r='46' fill='%23f0453f' stroke='%237a1420' stroke-width='4'/%3E%3Cellipse cx='-15' cy='-6' rx='6' ry='9' fill='%232a1010'/%3E%3Cellipse cx='15' cy='-6' rx='6' ry='9' fill='%232a1010'/%3E%3Cpath d='M-22 12 Q0 34 22 12' fill='none' stroke='%232a1010' stroke-width='6' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* ===================== Theme ===================== */
+:root {
+  --bg: #f6efe2;
+  --bg-dot: rgba(120, 90, 40, 0.08);
+  --card: #fffaf1;
+  --ink: #23201b;
+  --muted: #6d665b;
+  --line: #e2d6c0;
+  --shadow: #23201b;
+  --board-1: #3f86d8;
+  --board-2: #275fa8;
+  --board-line: #13253d;
+  --spot: rgba(255, 255, 255, 0.82);
+  --spot-stroke: #13253d;
+  --glow: #ffe45c;
+  --accent: #ff6b3d;
+  --chip-on-bg: #23201b;
+  --chip-on-ink: #fffaf1;
+  --btn-bg: #ffffff;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14161c;
+    --bg-dot: rgba(255, 255, 255, 0.035);
+    --card: #1e212a;
+    --ink: #eee8dc;
+    --muted: #a59f94;
+    --line: #333845;
+    --shadow: #000000;
+    --board-1: #2a5d9c;
+    --board-2: #183a66;
+    --board-line: #d6e4f7;
+    --spot: rgba(220, 232, 255, 0.75);
+    --spot-stroke: #0a1424;
+    --glow: #ffd84a;
+    --accent: #ff8a5c;
+    --chip-on-bg: #eee8dc;
+    --chip-on-ink: #1e212a;
+    --btn-bg: #2a2e39;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #14161c;
+  --bg-dot: rgba(255, 255, 255, 0.035);
+  --card: #1e212a;
+  --ink: #eee8dc;
+  --muted: #a59f94;
+  --line: #333845;
+  --shadow: #000000;
+  --board-1: #2a5d9c;
+  --board-2: #183a66;
+  --board-line: #d6e4f7;
+  --spot: rgba(220, 232, 255, 0.75);
+  --spot-stroke: #0a1424;
+  --glow: #ffd84a;
+  --accent: #ff8a5c;
+  --chip-on-bg: #eee8dc;
+  --chip-on-ink: #1e212a;
+  --btn-bg: #2a2e39;
+  color-scheme: dark;
+}
+
+/* ===================== Base (mobile first) ===================== */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--bg-dot) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+  color: var(--ink);
+  font: 16px/1.55 ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  transition: background-color 0.25s, color 0.25s;
+}
+button, input { font: inherit; color: inherit; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ===================== Header ===================== */
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 12px 14px 0;
+}
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.brand svg { width: 38px; height: 38px; flex: none; }
+.brand h1 { font-size: 1.25rem; line-height: 1.15; letter-spacing: -0.01em; }
+.brand p { font-size: 0.85rem; color: var(--muted); }
+.theme-btn {
+  flex: none;
+  min-height: 40px;
+  padding: 6px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  background: var(--card);
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ===================== Layout ===================== */
+.layout { display: grid; gap: 14px; padding: 12px; max-width: 1100px; margin: 0 auto; }
+.panel {
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  box-shadow: 4px 4px 0 var(--shadow);
+  padding: 14px;
+  min-width: 0;
+  transition: background-color 0.25s;
+}
+
+/* ===================== Segmented controls ===================== */
+.seg { display: flex; border: 2px solid var(--ink); border-radius: 14px; overflow: hidden; background: var(--btn-bg); }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 6px;
+  text-align: center;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+.seg label + input + label { border-left: 2px solid var(--ink); }
+.seg input:checked + label { background: var(--chip-on-bg); color: var(--chip-on-ink); }
+.seg input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: -4px; }
+.seg.pill { border-radius: 999px; }
+.seg label svg { width: 18px; height: 18px; }
+
+.variant-row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; }
+.variant-row .seg label { white-space: nowrap; padding: 8px 10px; }
+@media (max-width: 419px) { .variant-row .seg label svg { display: none; } }
+.variant-name { text-align: center; margin: 10px 0 2px; font-size: 0.9rem; color: var(--muted); }
+.variant-name strong { color: var(--ink); }
+
+/* ===================== Players ===================== */
+.reserves { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.reserve {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  border: 2px solid transparent;
+  border-radius: 14px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+.reserve.active { border-color: var(--ink); background: var(--btn-bg); }
+.reserve .tokens { display: flex; gap: 3px; min-height: 26px; }
+.reserve .tokens svg { width: 26px; height: 26px; transition: opacity 0.2s, transform 0.2s; }
+.reserve .tokens svg.used { opacity: 0.18; filter: grayscale(1); transform: scale(0.8); }
+
+/* ===================== Board ===================== */
+.board-wrap { width: 100%; max-width: min(520px, 60vh); margin: 4px auto 0; aspect-ratio: 1; }
+#board { display: block; width: 100%; height: 100%; touch-action: manipulation; user-select: none; -webkit-user-select: none; overflow: visible; }
+#board .outline { fill: url(#board-fill); stroke: var(--board-line); stroke-width: 8; }
+#board .lines line { stroke: var(--board-line); stroke-width: 7; stroke-linecap: round; }
+#board .node { cursor: pointer; outline: none; -webkit-tap-highlight-color: transparent; }
+#board .hit { fill: transparent; }
+#board .spot { fill: var(--spot); stroke: var(--spot-stroke); stroke-width: 4; transition: r 0.15s, fill 0.15s; }
+#board .node.target .spot { fill: var(--glow); r: 25px; animation: pulse 1.1s ease-in-out infinite; }
+#board .node.selected .hit { fill: rgba(255, 255, 255, 0.4); stroke: var(--glow); stroke-width: 6; }
+#board .node.movable .hit { stroke: rgba(255, 255, 255, 0.85); stroke-width: 4; stroke-dasharray: 8 8; animation: spin 6s linear infinite; transform-box: fill-box; transform-origin: center; }
+#board .node.hint-from .hit, #board .node.hint-to .hit { fill: rgba(255, 228, 92, 0.55); stroke: var(--glow); stroke-width: 5; stroke-dasharray: 10 7; }
+#board .node.last-from .spot { stroke-dasharray: 6 5; }
+#board .node:focus-visible .hit { stroke: var(--accent); stroke-width: 6; }
+#board .pieces { pointer-events: none; }
+#board .piece { transform-box: fill-box; transform-origin: center; filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.35)); }
+#board .piece.pop { animation: pop 0.32s ease-out; }
+#board .piece.winner { animation: bounce 0.6s ease-in-out infinite alternate; }
+#board .winline polyline { fill: none; stroke: var(--glow); stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; opacity: 0.85; }
+
+@keyframes pulse { 50% { opacity: 0.55; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pop { from { transform: scale(0.45); } 70% { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes bounce { to { transform: translateY(-6px) scale(1.08); } }
+
+/* ===================== Status + buttons ===================== */
+.status { min-height: 3.1em; text-align: center; font-weight: 700; margin: 6px 0 10px; }
+.actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.btn {
+  flex: 1 1 0;
+  min-height: 46px;
+  padding: 8px 14px;
+  border: 2px solid var(--ink);
+  border-radius: 14px;
+  background: var(--btn-bg);
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 var(--shadow);
+  transition: transform 0.05s;
+}
+.btn:active { transform: translate(3px, 3px); box-shadow: none; }
+.btn.primary { background: var(--accent); color: #23140c; }
+.btn:disabled { opacity: 0.4; cursor: default; transform: none; }
+
+/* ===================== Settings ===================== */
+.settings { margin-top: 14px; border-top: 2px dashed var(--line); padding-top: 4px; }
+.settings summary { cursor: pointer; font-weight: 800; min-height: 44px; display: flex; align-items: center; gap: 8px; list-style: none; }
+.settings summary::-webkit-details-marker { display: none; }
+.settings summary::before { content: "▸"; transition: transform 0.15s; }
+.settings[open] summary::before { transform: rotate(90deg); }
+.settings fieldset { border: 0; margin-top: 10px; }
+.settings legend { font-size: 0.85rem; font-weight: 700; color: var(--muted); margin-bottom: 4px; }
+body.pvp .cpu-only { display: none; }
+
+/* ===================== Reading panels ===================== */
+.info h2 { font-size: 1.2rem; margin-bottom: 8px; }
+.info h3 { font-size: 1.02rem; margin: 0 0 4px; }
+.info ol { padding-left: 1.3em; display: grid; gap: 6px; margin-bottom: 8px; }
+.info p + p { margin-top: 8px; }
+.info .lead { color: var(--muted); }
+.callout { margin-top: 12px; padding: 10px 12px; border-radius: 14px; background: color-mix(in srgb, var(--glow) 22%, transparent); border: 2px solid color-mix(in srgb, var(--glow) 60%, var(--ink) 10%); }
+
+.stories { display: grid; gap: 10px; margin-top: 10px; }
+.story { border: 2px solid var(--line); border-radius: 16px; padding: 0 12px; background: var(--bg); }
+.story summary { cursor: pointer; min-height: 48px; display: flex; align-items: center; justify-content: space-between; gap: 10px; font-weight: 800; list-style: none; }
+.story summary::-webkit-details-marker { display: none; }
+.story summary .where { font-weight: 600; font-size: 0.82rem; color: var(--muted); }
+.story summary::after { content: "+"; font-size: 1.3rem; line-height: 1; }
+.story[open] summary::after { content: "–"; }
+.story .body { padding: 0 0 12px; }
+.story .body p { font-size: 0.95rem; }
+.sources { margin-top: 12px; font-size: 0.82rem; color: var(--muted); }
+.sources a { color: inherit; }
+
+/* ===================== Win overlay ===================== */
+.win {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(255, 214, 64, 0.92);
+  animation: winfade 3s ease-out;
+}
+.win[hidden] { display: none; }
+.win.is-draw { background: color-mix(in srgb, var(--bg) 90%, transparent); animation: none; }
+@keyframes winfade { from { background-color: rgba(240, 69, 63, 0.92); } to { background-color: rgba(255, 214, 64, 0.92); } }
+.win-card {
+  width: min(100%, 360px);
+  text-align: center;
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 22px;
+  box-shadow: 5px 5px 0 var(--shadow);
+  padding: 22px 18px 18px;
+  animation: pop 0.35s ease-out;
+}
+.win-card .faces { display: flex; justify-content: center; gap: 6px; }
+.win-card .faces svg { width: 104px; height: 104px; animation: bounce 0.6s ease-in-out infinite alternate; }
+.win.is-draw .win-card .faces svg { width: 76px; height: 76px; animation: none; }
+.win-card h2 { font-size: 1.9rem; margin-top: 6px; }
+.win-card p { margin: 4px 0 16px; color: var(--muted); }
+
+/* ===================== Larger screens ===================== */
+@media (min-width: 600px) {
+  .top { padding-top: 18px; }
+  .brand h1 { font-size: 1.6rem; }
+  .brand svg { width: 46px; height: 46px; }
+  .layout { padding: 18px; gap: 18px; }
+  .panel { padding: 20px; }
+  .reserve { flex-direction: row; justify-content: center; gap: 10px; font-size: 0.95rem; }
+}
+@media (min-width: 920px) {
+  .layout { grid-template-columns: minmax(0, 1fr) 360px; align-items: start; }
+  .side { display: grid; gap: 18px; position: sticky; top: 18px; max-height: calc(100vh - 36px); overflow: auto; padding: 0 6px 6px 0; }
+  .board-wrap { max-width: min(560px, 64vh); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- Shared drawings: board gradient + smiley faces (filled in by script) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs id="defs">
+    <radialGradient id="board-fill" cx="40%" cy="35%" r="75%">
+      <stop offset="0" stop-color="var(--board-1)" style="stop-color: var(--board-1)"/>
+      <stop offset="1" stop-color="var(--board-2)" style="stop-color: var(--board-2)"/>
+    </radialGradient>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="brand">
+    <svg viewBox="-50 -50 100 100" aria-hidden="true"><use href="#face-1-idle" x="-50" y="-50" width="100" height="100"/></svg>
+    <div>
+      <h1>Three in a Row</h1>
+      <p>Morris · Tapatan · Achi</p>
+    </div>
+  </div>
+  <button type="button" class="theme-btn" id="btn-theme" aria-label="Colour theme">◐ Auto</button>
+</header>
+
+<main class="layout">
+
+  <section class="panel game" aria-label="Game">
+    <div class="variant-row">
+      <div class="seg pill" role="radiogroup" aria-label="Board shape">
+        <input type="radio" id="board-circle" name="board" value="circle"><label for="board-circle">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Circle</label>
+        <input type="radio" id="board-square" name="board" value="square"><label for="board-square">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="2.5" y="2.5" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5"/></svg>Square</label>
+      </div>
+      <div class="seg pill" role="radiogroup" aria-label="Smileys each">
+        <input type="radio" id="pieces-3" name="pieces" value="3"><label for="pieces-3">3 each</label>
+        <input type="radio" id="pieces-4" name="pieces" value="4"><label for="pieces-4">4 each</label>
+      </div>
+    </div>
+    <p class="variant-name" id="variant-name"></p>
+
+    <div class="reserves">
+      <div class="reserve" id="reserve-1"></div>
+      <div class="reserve" id="reserve-2"></div>
+    </div>
+
+    <div class="board-wrap">
+      <svg id="board" viewBox="-48 -48 496 496" role="group" aria-label="Game board"></svg>
+    </div>
+
+    <p class="status" id="status" aria-live="polite"></p>
+
+    <div class="actions">
+      <button type="button" id="btn-new" class="btn primary">New game</button>
+      <button type="button" id="btn-undo" class="btn">Undo</button>
+      <button type="button" id="btn-hint" class="btn">Hint</button>
+    </div>
+
+    <details class="settings">
+      <summary>Players &amp; settings</summary>
+      <fieldset>
+        <legend>Opponent</legend>
+        <div class="seg">
+          <input type="radio" id="mode-cpu" name="mode" value="cpu"><label for="mode-cpu">Computer</label>
+          <input type="radio" id="mode-pvp" name="mode" value="pvp"><label for="mode-pvp">2 players</label>
+        </div>
+      </fieldset>
+      <fieldset class="cpu-only">
+        <legend>You play</legend>
+        <div class="seg">
+          <input type="radio" id="you-1" name="you" value="1"><label for="you-1">Red</label>
+          <input type="radio" id="you-2" name="you" value="2"><label for="you-2">Yellow</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Goes first</legend>
+        <div class="seg">
+          <input type="radio" id="first-1" name="first" value="1"><label for="first-1">Red</label>
+          <input type="radio" id="first-2" name="first" value="2"><label for="first-2">Yellow</label>
+        </div>
+      </fieldset>
+      <fieldset class="cpu-only">
+        <legend>Computer strength</legend>
+        <div class="seg">
+          <input type="radio" id="level-easy" name="level" value="easy"><label for="level-easy">Easy</label>
+          <input type="radio" id="level-medium" name="level" value="medium"><label for="level-medium">Medium</label>
+          <input type="radio" id="level-hard" name="level" value="hard"><label for="level-hard">Hard</label>
+        </div>
+      </fieldset>
+    </details>
+  </section>
+
+  <div class="side">
+    <section class="panel info" aria-labelledby="rules-title">
+      <h2 id="rules-title">How to play</h2>
+      <ol>
+        <li><strong>Place.</strong> Take turns putting your <span class="n-word">three</span> smileys on empty spots.</li>
+        <li><strong>Move.</strong> When all <span class="n-word">three</span> of yours are down, each turn slide one smiley along a line to the empty spot next to it. You can't move until all yours are placed.</li>
+        <li><strong>Win.</strong> Get three of your smileys in a row along a line.<span class="circle-only"> On the circle, three neighbouring spots round the rim also count.</span></li>
+      </ol>
+      <p>If it's your turn and none of your smileys can move, you lose. If the same position comes up three times, it's a draw.</p>
+      <div class="callout">
+        <h3>About the computer</h3>
+        <p id="theory"></p>
+      </div>
+    </section>
+
+    <section class="panel info" aria-labelledby="history-title">
+      <h2 id="history-title">The games behind it</h2>
+      <p class="lead">Moving three-in-a-row games turn up all over the world. These are the main relatives of the one you're playing.</p>
+      <div class="stories">
+        <details class="story" open>
+          <summary><span>Three Men's Morris <span class="where">Europe &amp; beyond</span></span></summary>
+          <div class="body">
+            <p>This is the smallest of the "mill" games, the family that includes Six and Nine Men's Morris. "Morris" probably comes from the Latin <em>merellus</em>, meaning a counter or game piece. The name "Three Men's Morris" seems to be fairly modern, borrowed from its bigger cousin.</p>
+            <p>The Romans played a three-stone game, sometimes called <em>terni lapilli</em>. Some people think the small game the poet Ovid mentions in his <em>Art of Love</em> is this one. You'll often read that the board is carved into an Egyptian temple roof at Kurna from around 1400 BC. Historians are doubtful, though, because the same stone also has Coptic Christian crosses carved on it, so the scratches can't be dated.</p>
+            <p>The evidence from medieval England is much clearer. Morris boards were scratched into the stone benches of cathedral cloisters, probably by monks or choirboys passing the time.</p>
+          </div>
+        </details>
+        <details class="story">
+          <summary><span>Tapatan <span class="where">Philippines</span></span></summary>
+          <div class="body">
+            <p>Tapatan is the same game on the square board with diagonals, which is your square board with 3 each. The American ethnographer Stewart Culin described it in 1900, in a study of Philippine games. Players used three pebbles, or bits of bark or wood, on a square divided into eight sections.</p>
+            <p>The board might be a wooden one, or just lines marked on a floor or a doorstep. Each player has three pieces, traditionally light wood against dark wood. Culin also linked it to a Chinese game from Canton called <em>luk tsut k'i</em>, or "six man chess", which is the same game again.</p>
+          </div>
+        </details>
+        <details class="story">
+          <summary><span>Achi <span class="where">Ghana</span></span></summary>
+          <div class="body">
+            <p>Achi uses the same board but gives each player <strong>four</strong> pieces. Once all eight are down there's only one gap left, so every move is a race to steer that single hole where you want it. Try it with "4 each" on the square.</p>
+            <p>The board historian H. J. R. Murray recorded Achi from Ghana in the 1920s. A version was also played by the Yoruba in Nigeria. Children often scratch the board into the dirt and play with pebbles, seeds or little sticks. One player keeps the bark on their sticks and the other peels theirs, which is a neat way to tell the two sides apart.</p>
+            <p>Rules vary from place to place. Some sources describe Achi with only three pieces each, which makes it the same as Three Men's Morris.</p>
+          </div>
+        </details>
+        <details class="story">
+          <summary><span>The circle board <span class="where">A variant</span></span></summary>
+          <div class="body">
+            <p>Game collections list a "circular" Three Men's Morris among the relatives. On this circle the spots connect exactly as on the square: round the rim, and in through the centre. The difference is that the rim curves, so any three neighbouring rim spots also make a row. That gives 12 ways to win instead of 8.</p>
+          </div>
+        </details>
+      </div>
+      <p class="sources">Sources: <a href="https://en.wikipedia.org/wiki/Three_men%27s_morris" target="_blank" rel="noopener">Three men's morris</a>, <a href="https://en.wikipedia.org/wiki/Achi_(game)" target="_blank" rel="noopener">Achi</a>, <a href="https://games.porg.es/games/three-mens-morris/" target="_blank" rel="noopener">games.porg.es</a>, <a href="https://healthy.uwaterloo.ca/museum/VirtualExhibits/rowgames/tapatan.html" target="_blank" rel="noopener">Museum of Games: Tapatan</a>.</p>
+    </section>
+  </div>
+
+</main>
+
+<div id="win" class="win" hidden role="dialog" aria-modal="true" aria-labelledby="win-title">
+  <div class="win-card">
+    <div class="faces" id="win-faces"></div>
+    <h2 id="win-title">Winner!</h2>
+    <p id="win-sub"></p>
+    <div class="actions">
+      <button type="button" id="btn-again" class="btn primary">Play again</button>
+      <button type="button" id="btn-close" class="btn">See board</button>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+
+/* =====================================================================
+   Three in a row — circle and square boards, 3 or 4 smileys each.
+
+   Nodes 0–8:      0 ─ 1 ─ 2
+                   │ ╲ │ ╱ │
+                   3 ─ 4 ─ 5
+                   │ ╱ │ ╲ │
+                   6 ─ 7 ─ 8
+
+   Both boards have the same links. The circle adds 4 rim lines.
+   The computer solves every position for the chosen variant (under
+   40,000 of them, about 50 ms), so on Hard it never makes a mistake.
+   ===================================================================== */
+
+const EMPTY = 0, RED = 1, YELLOW = 2;
+const NAME = { 1: 'Red', 2: 'Yellow' };
+const other = (p) => 3 - p;
+const WORDS = { 3: 'three', 4: 'four' };
+
+const ADJ = [
+  [1, 3, 4], [0, 2, 4], [1, 4, 5],
+  [0, 4, 6], [0, 1, 2, 3, 5, 6, 7, 8], [2, 4, 8],
+  [3, 4, 7], [4, 6, 8], [4, 5, 7],
+];
+const SQUARE_LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+const CIRCLE_LINES = SQUARE_LINES.concat([[1,2,5],[5,8,7],[7,6,3],[3,0,1]]);
+
+const D = 141.42;
+const BOARDS = {
+  circle: { lines: CIRCLE_LINES, pos: [[200-D,200-D],[200,0],[200+D,200-D],[0,200],[200,200],[400,200],[200-D,200+D],[200,400],[200+D,200+D]] },
+  square: { lines: SQUARE_LINES, pos: [[0,0],[200,0],[400,0],[0,200],[200,200],[400,200],[0,400],[200,400],[400,400]] },
+};
+
+/* ------------------------------ rules ------------------------------ */
+
+function countOf(b, p) { let n = 0; for (let i = 0; i < 9; i++) if (b[i] === p) n++; return n; }
+
+function findLine(b, p, lines) {
+  for (const l of lines) if (b[l[0]] === p && b[l[1]] === p && b[l[2]] === p) return l;
+  return null;
+}
+
+function legalMoves(b, p, n) {
+  const moves = [];
+  if (countOf(b, p) < n) {
+    for (let i = 0; i < 9; i++) if (b[i] === EMPTY) moves.push({ from: -1, to: i });
+  } else {
+    for (let i = 0; i < 9; i++) {
+      if (b[i] !== p) continue;
+      for (const j of ADJ[i]) if (b[j] === EMPTY) moves.push({ from: i, to: j });
+    }
+  }
+  return moves;
+}
+
+function applyMove(b, m, p) { const r = b.slice(); if (m.from >= 0) r[m.from] = EMPTY; r[m.to] = p; return r; }
+
+function encode(b, p) { let k = 0; for (let i = 8; i >= 0; i--) k = k * 3 + b[i]; return k * 2 + (p - 1); }
+
+function decode(key) {
+  const p = (key % 2) + 1; let k = Math.floor(key / 2); const b = new Array(9);
+  for (let i = 0; i < 9; i++) { b[i] = k % 3; k = Math.floor(k / 3); }
+  return { b, p };
+}
+
+/* ------------------------------ solver ------------------------------
+   Retrograde analysis: mark every finished position (someone has a row,
+   or the player to move is stuck) as a loss for the player to move, then
+   work backwards a move at a time. Whatever is never decided is a draw. */
+
+function solve(lines, n) {
+  const SIZE = 19683 * 2;
+  const result = new Int8Array(SIZE), depth = new Int16Array(SIZE), decided = new Uint8Array(SIZE);
+  const openKeys = [], kids = [];
+  for (let k = 0; k < SIZE; k++) {
+    const { b, p } = decode(k);
+    if (countOf(b, RED) > n || countOf(b, YELLOW) > n) continue;
+    if (findLine(b, other(p), lines)) { result[k] = -1; decided[k] = 1; continue; }
+    if (findLine(b, p, lines)) { result[k] = 1; decided[k] = 1; continue; }
+    const ms = legalMoves(b, p, n);
+    if (!ms.length) { result[k] = -1; decided[k] = 1; continue; }
+    openKeys.push(k);
+    kids.push(ms.map((m) => encode(applyMove(b, m, p), other(p))));
+  }
+  let pending = openKeys.map((_, i) => i);
+  for (let round = 1; pending.length; round++) {
+    const updates = [], still = [];
+    for (const i of pending) {
+      let canWin = false, allLose = true;
+      for (const c of kids[i]) {
+        if (!decided[c]) { allLose = false; continue; }
+        if (result[c] === -1) { canWin = true; break; }
+      }
+      if (canWin) updates.push(i, 1); else if (allLose) updates.push(i, -1); else still.push(i);
+    }
+    if (!updates.length) break;
+    for (let u = 0; u < updates.length; u += 2) {
+      const k = openKeys[updates[u]]; result[k] = updates[u + 1]; depth[k] = round; decided[k] = 1;
+    }
+    pending = still;
+  }
+  return { result, depth };
+}
+
+const solved = {};
+function solverFor(type, n) {
+  const id = type + n;
+  if (!solved[id]) solved[id] = solve(BOARDS[type].lines, n);
+  return solved[id];
+}
+
+/* ---------------------------- move choice --------------------------- */
+
+const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+
+function scoreMove(b, p, m, sol) {
+  const c = encode(applyMove(b, m, p), other(p));
+  if (sol.result[c] === -1) return 1000 - sol.depth[c];   // we win: faster is better
+  if (sol.result[c] === 1) return -1000 + sol.depth[c];   // we lose: hold out longest
+  return 0;
+}
+
+function trapCount(b, p, m, sol, n) {
+  const nb = applyMove(b, m, p), q = other(p); let t = 0;
+  for (const r of legalMoves(nb, q, n)) if (sol.result[encode(applyMove(nb, r, q), p)] === 1) t++;
+  return t;
+}
+
+function perfectMoves(b, p, type, n) {
+  const sol = solverFor(type, n);
+  let best = -Infinity, out = [];
+  for (const m of legalMoves(b, p, n)) {
+    const s = scoreMove(b, p, m, sol);
+    if (s > best) { best = s; out = [m]; } else if (s === best) out.push(m);
+  }
+  if (best === 0 && out.length > 1) {  // drawn: pick the move that leaves the most ways to slip up
+    let bt = -1, trapped = [];
+    for (const m of out) {
+      const t = trapCount(b, p, m, sol, n);
+      if (t > bt) { bt = t; trapped = [m]; } else if (t === bt) trapped.push(m);
+    }
+    out = trapped;
+  }
+  return out;
+}
+
+function casualMove(b, p, type, n) {
+  const lines = BOARDS[type].lines, ms = legalMoves(b, p, n), q = other(p);
+  const wins = ms.filter((m) => findLine(applyMove(b, m, p), p, lines));
+  if (wins.length) return pick(wins);
+  const safe = ms.filter((m) => {
+    const nb = applyMove(b, m, p);
+    return !legalMoves(nb, q, n).some((r) => findLine(applyMove(nb, r, q), q, lines));
+  });
+  return pick(safe.length ? safe : ms);
+}
+
+function chooseMove(b, p, type, n, level) {
+  if (level === 'easy') return Math.random() < 0.5 ? casualMove(b, p, type, n) : pick(legalMoves(b, p, n));
+  if (level === 'medium' && Math.random() < 0.4) return casualMove(b, p, type, n);
+  return pick(perfectMoves(b, p, type, n));
+}
+
+function evaluate(b, p, type, n) {
+  const sol = solverFor(type, n), k = encode(b, p);
+  return { result: sol.result[k], depth: sol.depth[k] };
+}
+
+/* ------------------------------ smileys ------------------------------
+   Drawn as SVG so they're sharp at any size. Red smiles, Yellow grins
+   with its mouth open (so the two differ by shape as well as colour).
+   Moods: idle (blinks), win (happy squint), lose (worried).           */
+
+const FACE = {
+  1: { hi: '#ff9b8a', mid: '#f0453f', lo: '#b3202d', rim: '#6e1320', cheek: '#ffb3a8', ink: '#2a0d10', blink: '4.2s' },
+  2: { hi: '#fff6b0', mid: '#ffcc2e', lo: '#e58c0b', rim: '#7a4a05', cheek: '#ff9f6e', ink: '#2d1a05', blink: '5.3s' },
+};
+
+function faceSymbol(p, mood) {
+  const c = FACE[p], id = `face-${p}-${mood}`;
+  let eyes, mouth, brows = '';
+  if (mood === 'win') {
+    eyes = `<path d="M-23 -4 Q-15 -16 -7 -4 M7 -4 Q15 -16 23 -4" fill="none" stroke="${c.ink}" stroke-width="5" stroke-linecap="round"/>`;
+    mouth = `<path d="M-24 8 Q0 44 24 8 Z" fill="${c.ink}" stroke="${c.ink}" stroke-width="3" stroke-linejoin="round"/>
+             <path d="M-11 25 Q0 18 11 25 Q0 34 -11 25 Z" fill="#ff6d6d"/>`;
+  } else if (mood === 'lose') {
+    brows = `<path d="M-24 -18 L-9 -22 M24 -18 L9 -22" stroke="${c.ink}" stroke-width="4" stroke-linecap="round" transform="rotate(0)"/>`;
+    eyes = `<circle cx="-15" cy="-5" r="5" fill="${c.ink}"/><circle cx="15" cy="-5" r="5" fill="${c.ink}"/>`;
+    mouth = `<ellipse cx="0" cy="20" rx="7" ry="9" fill="${c.ink}"/>`;
+  } else {
+    const blink = (cx) => `<ellipse cx="${cx}" cy="-6" rx="5.5" ry="8.5" fill="${c.ink}"><animate attributeName="ry" values="8.5;8.5;0.8;8.5" keyTimes="0;0.93;0.965;1" dur="${c.blink}" repeatCount="indefinite"/></ellipse>
+      <circle cx="${cx + 2}" cy="-9" r="2" fill="#fff" opacity="0.85"/>`;
+    eyes = blink(-15) + blink(15);
+    mouth = p === RED
+      ? `<path d="M-21 10 Q0 32 21 10" fill="none" stroke="${c.ink}" stroke-width="5.5" stroke-linecap="round"/>`
+      : `<path d="M-18 9 Q0 36 18 9 Z" fill="${c.ink}" stroke="${c.ink}" stroke-width="3" stroke-linejoin="round"/>
+         <path d="M-8 22 Q0 16 8 22 Q0 29 -8 22 Z" fill="#ff6d6d"/>`;
+  }
+  return `<radialGradient id="${id}-g" cx="38%" cy="32%" r="72%">
+      <stop offset="0" stop-color="${c.hi}"/><stop offset="0.55" stop-color="${c.mid}"/><stop offset="1" stop-color="${c.lo}"/>
+    </radialGradient>
+    <symbol id="${id}" viewBox="-50 -50 100 100" overflow="visible">
+      <circle r="45" fill="url(#${id}-g)" stroke="${c.rim}" stroke-width="3.5"/>
+      <ellipse cx="-14" cy="-27" rx="19" ry="9" fill="#fff" opacity="0.38" transform="rotate(-22 -14 -27)"/>
+      <circle cx="-27" cy="10" r="7" fill="${c.cheek}" opacity="0.55"/><circle cx="27" cy="10" r="7" fill="${c.cheek}" opacity="0.55"/>
+      ${brows}${eyes}${mouth}
+    </symbol>`;
+}
+
+function faceSVG(p, mood, cls) {
+  return `<svg viewBox="-50 -50 100 100" aria-hidden="true"${cls ? ` class="${cls}"` : ''}><use href="#face-${p}-${mood}" x="-50" y="-50" width="100" height="100"/></svg>`;
+}
+
+/* ============================ the page ============================== */
+
+const S = {
+  type: 'circle', pieces: 3, mode: 'cpu', human: RED, first: RED, level: 'hard', theme: 'auto',
+  board: new Array(9).fill(EMPTY), turn: RED, history: [], keys: [], last: null,
+  selected: -1, hint: null, over: false, winner: 0, winLine: null, busy: false, token: 0,
+};
+
+const NS = 'http://www.w3.org/2000/svg';
+const $ = (sel) => document.querySelector(sel);
+let svg, layers = {};
+
+function el(tag, attrs, parent) {
+  const e = document.createElementNS(NS, tag);
+  for (const a in attrs) e.setAttribute(a, attrs[a]);
+  if (parent) parent.appendChild(e);
+  return e;
+}
+
+const SETTINGS = ['type', 'pieces', 'mode', 'human', 'first', 'level', 'theme'];
+function loadSettings() {
+  try {
+    const s = JSON.parse(localStorage.getItem('three-in-a-row') || '{}');
+    if (s.type in BOARDS) S.type = s.type;
+    if (s.pieces === 3 || s.pieces === 4) S.pieces = s.pieces;
+    if (s.mode === 'cpu' || s.mode === 'pvp') S.mode = s.mode;
+    if (s.human === RED || s.human === YELLOW) S.human = s.human;
+    if (s.first === RED || s.first === YELLOW) S.first = s.first;
+    if (['easy', 'medium', 'hard'].includes(s.level)) S.level = s.level;
+    if (['auto', 'light', 'dark'].includes(s.theme)) S.theme = s.theme;
+  } catch (e) { /* storage unavailable */ }
+}
+function saveSettings() {
+  try { const o = {}; SETTINGS.forEach((k) => { o[k] = S[k]; }); localStorage.setItem('three-in-a-row', JSON.stringify(o)); }
+  catch (e) { /* ignore */ }
+}
+
+function applyTheme() {
+  if (S.theme === 'auto') document.documentElement.removeAttribute('data-theme');
+  else document.documentElement.setAttribute('data-theme', S.theme);
+  $('#btn-theme').textContent = { auto: '◐ Auto', light: '☀ Light', dark: '☾ Dark' }[S.theme];
+}
+
+function variantName() {
+  if (S.type === 'square') return S.pieces === 3 ? "<strong>Three Men's Morris</strong> · also called Tapatan" : '<strong>Achi</strong> · four each, one gap';
+  return S.pieces === 3 ? "<strong>Circular Three Men's Morris</strong>" : '<strong>Achi on the circle</strong> · four each, one gap';
+}
+
+function syncControls() {
+  const set = (name, value) => { const r = document.querySelector(`input[name="${name}"][value="${value}"]`); if (r) r.checked = true; };
+  set('board', S.type); set('pieces', S.pieces); set('mode', S.mode);
+  set('you', S.human); set('first', S.first); set('level', S.level);
+  document.body.classList.toggle('pvp', S.mode === 'pvp');
+  $('#variant-name').innerHTML = variantName();
+  document.querySelectorAll('.n-word').forEach((e) => { e.textContent = WORDS[S.pieces]; });
+  document.querySelectorAll('.circle-only').forEach((e) => { e.hidden = S.type !== 'circle'; });
+  describeTheory();
+}
+
+const SPOT_NAMES = ['top-left corner', 'top', 'top-right corner', 'left', 'centre', 'right', 'bottom-left corner', 'bottom', 'bottom-right corner'];
+
+function describeTheory() {
+  const empty = new Array(9).fill(EMPTY);
+  const ev = evaluate(empty, RED, S.type, S.pieces);
+  let text;
+  if (ev.result === 1) {
+    const best = perfectMoves(empty, RED, S.type, S.pieces).map((m) => m.to);
+    const how = best.length === 1 ? ` by starting in the ${SPOT_NAMES[best[0]]}` : '';
+    text = `On this board, whoever goes first can always win${how}. With perfect play it takes ${Math.ceil(ev.depth / 2)} of their turns. On Hard, the computer never misses it.`;
+  } else if (ev.result === -1) {
+    text = 'On this board, the second player can always win with perfect play. On Hard, the computer never misses it.';
+  } else {
+    text = "On this board, perfect play from both sides is a draw, so you can't beat Hard. You can only avoid losing to it.";
+  }
+  $('#theory').textContent = `The computer has worked out every possible position. ${text} Easy and Medium make human-style mistakes, and Hint shows you the best move.`;
+}
+
+function drawBoard() {
+  svg.innerHTML = '';
+  const P = BOARDS[S.type].pos;
+  const g = el('g', { class: 'lines' }, svg);
+  if (S.type === 'circle') el('circle', { cx: 200, cy: 200, r: 200, class: 'outline' }, g);
+  else el('rect', { x: 0, y: 0, width: 400, height: 400, rx: 6, class: 'outline' }, g);
+  for (const [a, b] of [[1, 7], [3, 5], [0, 8], [2, 6]]) el('line', { x1: P[a][0], y1: P[a][1], x2: P[b][0], y2: P[b][1] }, g);
+  layers.win = el('g', { class: 'winline' }, svg);
+  layers.nodes = el('g', { class: 'nodes' }, svg);
+  layers.pieces = el('g', { class: 'pieces' }, svg);
+  layers.spots = P.map(([x, y], i) => {
+    const n = el('g', { class: 'node', 'data-i': i, role: 'button', tabindex: 0, 'aria-label': SPOT_NAMES[i] }, layers.nodes);
+    el('circle', { cx: x, cy: y, r: 46, class: 'hit' }, n);
+    el('circle', { cx: x, cy: y, r: 20, class: 'spot' }, n);
+    return n;
+  });
+}
+
+const isHumanTurn = () => S.mode === 'pvp' || S.turn === S.human;
+const placing = (p) => countOf(S.board, p) < S.pieces;
+const targetsFor = (i) => ADJ[i].filter((j) => S.board[j] === EMPTY);
+
+function moodFor(p) {
+  if (!S.over || !S.winner) return 'idle';
+  return p === S.winner ? 'win' : 'lose';
+}
+
+function render() {
+  const P = BOARDS[S.type].pos;
+  const humanTurn = !S.over && !S.busy && isHumanTurn();
+  const placingNow = placing(S.turn);
+  const targets = new Set(), movable = new Set();
+  if (humanTurn) {
+    if (placingNow) S.board.forEach((v, i) => { if (v === EMPTY) targets.add(i); });
+    else if (S.selected >= 0) targetsFor(S.selected).forEach((j) => targets.add(j));
+    else S.board.forEach((v, i) => { if (v === S.turn && targetsFor(i).length) movable.add(i); });
+  }
+  layers.spots.forEach((n, i) => {
+    n.classList.toggle('target', targets.has(i));
+    n.classList.toggle('selected', S.selected === i);
+    n.classList.toggle('movable', movable.has(i));
+    n.classList.toggle('hint-from', !!S.hint && S.hint.from === i);
+    n.classList.toggle('hint-to', !!S.hint && S.hint.to === i);
+    n.classList.toggle('last-from', !!S.last && S.last.from === i);
+  });
+
+  layers.pieces.innerHTML = '';
+  S.board.forEach((v, i) => {
+    if (v === EMPTY) return;
+    const [x, y] = P[i];
+    const cls = 'piece' + (S.last && S.last.to === i && !S.over ? ' pop' : '') + (S.winLine && S.winLine.includes(i) ? ' winner' : '');
+    el('use', { href: `#face-${v}-${moodFor(v)}`, x: x - 36, y: y - 36, width: 72, height: 72, class: cls }, layers.pieces);
+  });
+
+  layers.win.innerHTML = '';
+  if (S.winLine) el('polyline', { points: S.winLine.map((i) => P[i].join(',')).join(' ') }, layers.win);
+
+  for (const p of [RED, YELLOW]) {
+    const box = $(`#reserve-${p}`);
+    const left = S.pieces - countOf(S.board, p);
+    let who = NAME[p];
+    if (S.mode === 'cpu') who += p === S.human ? ' (you)' : ' (computer)';
+    box.innerHTML = `<span class="who">${who}</span><span class="tokens">` +
+      Array.from({ length: S.pieces }, (_, i) => faceSVG(p, moodFor(p), i < left ? '' : 'used')).join('') + '</span>';
+    box.classList.toggle('active', !S.over && S.turn === p);
+  }
+
+  if (!S.over) renderStatus();
+  $('#btn-undo').disabled = !S.history.length;
+  $('#btn-hint').disabled = !humanTurn;
+}
+
+function renderStatus() {
+  const st = $('#status'), p = S.turn;
+  if (S.mode === 'cpu' && p !== S.human) { st.textContent = 'Computer is thinking…'; return; }
+  const you = S.mode === 'cpu' ? 'Your turn' : `${NAME[p]}'s turn`;
+  if (placing(p)) {
+    const left = S.pieces - countOf(S.board, p);
+    st.textContent = `${you}: tap an empty spot to place a smiley (${left} left).`;
+  } else if (S.selected >= 0) st.textContent = `${you}: tap a glowing spot to move there.`;
+  else st.textContent = `${you}: tap one of your smileys to move it.`;
+}
+
+function doMove(m) {
+  S.history.push({ board: S.board.slice(), turn: S.turn, last: S.last, keys: S.keys.slice() });
+  const p = S.turn;
+  S.board = applyMove(S.board, m, p);
+  S.last = m; S.selected = -1; S.hint = null;
+
+  const line = findLine(S.board, p, BOARDS[S.type].lines);
+  if (line) return finish(p, line, 'line');
+  S.turn = other(p);
+  const key = encode(S.board, S.turn);
+  S.keys.push(key);
+  if (S.keys.filter((k) => k === key).length >= 3) return finish(0, null, 'repetition');
+  if (!legalMoves(S.board, S.turn, S.pieces).length) return finish(p, null, 'blocked');
+  render();
+  maybeComputer();
+}
+
+function maybeComputer() {
+  if (S.over || S.mode !== 'cpu' || S.turn === S.human) return;
+  S.busy = true;
+  render();
+  const token = ++S.token;
+  setTimeout(() => {
+    if (token !== S.token) return;
+    S.busy = false;
+    doMove(chooseMove(S.board, S.turn, S.type, S.pieces, S.level));
+  }, 550);
+}
+
+function finish(winner, line, reason) {
+  S.over = true; S.winner = winner; S.winLine = line; S.busy = false;
+  render();
+  let title, sub;
+  if (!winner) { title = 'Draw'; sub = 'The same position came up three times.'; }
+  else {
+    title = S.mode === 'cpu' ? (winner === S.human ? 'You win!' : 'Computer wins') : `${NAME[winner]} wins!`;
+    sub = reason === 'blocked' ? `${NAME[other(winner)]} is boxed in with no move left.` : 'Three in a row!';
+  }
+  $('#status').textContent = `${title} ${sub}`;
+  const token = ++S.token;
+  setTimeout(() => {
+    if (token !== S.token) return;
+    $('#win-faces').innerHTML = winner ? faceSVG(winner, 'win') : faceSVG(RED, 'idle') + faceSVG(YELLOW, 'idle');
+    $('#win-title').textContent = title;
+    $('#win-sub').textContent = sub;
+    $('#win').classList.toggle('is-draw', !winner);
+    $('#win').hidden = false;
+    $('#btn-again').focus();
+  }, line ? 1000 : 500);
+}
+
+function newGame() {
+  S.token++;
+  Object.assign(S, {
+    board: new Array(9).fill(EMPTY), turn: S.first, history: [], last: null, selected: -1, hint: null,
+    over: false, winner: 0, winLine: null, busy: false,
+  });
+  S.keys = [encode(S.board, S.turn)];
+  $('#win').hidden = true;
+  drawBoard();
+  render();
+  maybeComputer();
+}
+
+function undo() {
+  if (!S.history.length) return;
+  S.token++;
+  let snap = S.history.pop();
+  while (S.mode === 'cpu' && snap.turn !== S.human && S.history.length) snap = S.history.pop();
+  Object.assign(S, { board: snap.board, turn: snap.turn, last: snap.last, keys: snap.keys,
+    selected: -1, hint: null, over: false, winner: 0, winLine: null, busy: false });
+  $('#win').hidden = true;
+  render();
+  maybeComputer();
+}
+
+function hint() {
+  if (S.over || S.busy || !isHumanTurn()) return;
+  const m = pick(perfectMoves(S.board, S.turn, S.type, S.pieces));
+  S.hint = m; S.selected = -1;
+  render();
+  const ev = evaluate(S.board, S.turn, S.type, S.pieces);
+  const where = m.from < 0 ? 'Place on the highlighted spot.' : 'Move the highlighted smiley to the marked spot.';
+  const verdict = ev.result === 1 ? 'You can force a win from here.'
+    : ev.result === -1 ? 'Best defence. A perfect opponent wins from here.' : 'With best play this is a draw.';
+  $('#status').textContent = `${where} ${verdict}`;
+}
+
+function onNode(i) {
+  if (S.over || S.busy || !isHumanTurn()) return;
+  const p = S.turn;
+  if (placing(p)) { if (S.board[i] === EMPTY) doMove({ from: -1, to: i }); return; }
+  if (S.board[i] === p) {
+    S.selected = S.selected === i ? -1 : i; S.hint = null;
+    render();
+    if (S.selected >= 0 && !targetsFor(i).length) $('#status').textContent = 'That smiley is boxed in. Pick another one.';
+    return;
+  }
+  if (S.selected >= 0 && S.board[i] === EMPTY && ADJ[S.selected].includes(i)) doMove({ from: S.selected, to: i });
+  else if (S.selected >= 0) { S.selected = -1; render(); }
+}
+
+function init() {
+  const defs = $('#defs');
+  let markup = '';
+  for (const p of [RED, YELLOW]) for (const mood of ['idle', 'win', 'lose']) markup += faceSymbol(p, mood);
+  defs.insertAdjacentHTML('beforeend', markup);
+
+  svg = $('#board');
+  loadSettings();
+  applyTheme();
+  syncControls();
+
+  svg.addEventListener('click', (e) => { const n = e.target.closest('.node'); if (n) onNode(Number(n.dataset.i)); });
+  svg.addEventListener('keydown', (e) => {
+    const n = e.target.closest && e.target.closest('.node');
+    if (n && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onNode(Number(n.dataset.i)); }
+  });
+
+  document.querySelectorAll('input[type="radio"]').forEach((r) => r.addEventListener('change', () => {
+    const v = r.value;
+    if (r.name === 'level') { S.level = v; saveSettings(); return; }
+    if (r.name === 'board') S.type = v;
+    if (r.name === 'pieces') S.pieces = Number(v);
+    if (r.name === 'mode') S.mode = v;
+    if (r.name === 'you') S.human = Number(v);
+    if (r.name === 'first') S.first = Number(v);
+    saveSettings(); syncControls(); newGame();
+  }));
+
+  $('#btn-theme').addEventListener('click', () => {
+    S.theme = { auto: 'light', light: 'dark', dark: 'auto' }[S.theme];
+    applyTheme(); saveSettings();
+  });
+  $('#btn-new').addEventListener('click', newGame);
+  $('#btn-undo').addEventListener('click', undo);
+  $('#btn-hint').addEventListener('click', hint);
+  $('#btn-again').addEventListener('click', newGame);
+  $('#btn-close').addEventListener('click', () => { $('#win').hidden = true; });
+  $('#win').addEventListener('click', (e) => { if (e.target.id === 'win') $('#win').hidden = true; });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('#win').hidden = true; });
+
+  newGame();
+}
+
+if (typeof document !== 'undefined') document.addEventListener('DOMContentLoaded', init);
+else module.exports = { solve, BOARDS, legalMoves, applyMove, encode, findLine, chooseMove, perfectMoves, evaluate, RED, YELLOW };
+</script>
+</body>
+</html>
